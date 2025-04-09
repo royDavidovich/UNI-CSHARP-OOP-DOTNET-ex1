@@ -5,20 +5,20 @@ namespace Ex01_01
 {
     public class Program
     {
-        private const int NumbersToRead = 4;
+        private const int k_NumbersToRead = 4;
         public static void Main()
         {
-            string[] numbersFromUser = ConsoleTalker.ReceiveBooleanNumbersFromUser(NumbersToRead);
-            BooleanNumber[] arrayOfBooleanNumbers = new BooleanNumber[NumbersToRead];
-            for(int i = 0; i < NumbersToRead; ++i)
+            string[] numbersFromUser = ConsoleTalker.ReceiveBinaryNumbersFromUser(k_NumbersToRead);
+            BinaryNumber[] arrayOfBinaryNumbers = new BinaryNumber[k_NumbersToRead];
+            for(int i = 0; i < k_NumbersToRead; ++i)
             {
-                arrayOfBooleanNumbers[i] = BooleanNumber.Parse(numbersFromUser[i]);
-                arrayOfBooleanNumbers[i].CalculateNumberStatistics();
+                arrayOfBinaryNumbers[i] = BinaryNumber.Parse(numbersFromUser[i], i);
+                arrayOfBinaryNumbers[i].CalculateNumberStatistics();
             }
             
-            BooleanNumber.CalculateAverageDecimalValues(arrayOfBooleanNumbers);
-            BooleanNumber.SortArrayDecendingByDecimalValues(arrayOfBooleanNumbers);
-            ConsoleTalker.ShowStatistics(arrayOfBooleanNumbers);
+            BinaryNumber.CalculateAverageDecimalValues(arrayOfBinaryNumbers);
+            BinaryNumber.SortArrayDecendingByDecimalValues(arrayOfBinaryNumbers);
+            ConsoleTalker.ShowStatistics(arrayOfBinaryNumbers);
         }
     }
 }
