@@ -67,18 +67,23 @@ Please click ""enter"" after every number given.");
                 }
             }
             Console.WriteLine(decimalValues);
-            float averageValue = i_arrayOfBooleanNumbers[0].GetDecimalNumber();
+            float averageValue = BooleanNumber.GetAverageDecimalValue();
             Console.WriteLine("Average value of decimal numbers is " + averageValue);
             string msg = string.Format("Most Ones sequence in number is {0}, in the number {1}", BooleanNumber.GetLongestOnesSequence()[0],
                 i_arrayOfBooleanNumbers[BooleanNumber.GetLongestOnesSequence()[1]].GetMyNumberInString());
-
+            Console.WriteLine(msg);
             Console.WriteLine("Number of switches between One and Zero:");
             foreach (BooleanNumber number in i_arrayOfBooleanNumbers)
             {
                  msg = string.Format("{0} (for number {1}), " ,number.GetShiftsBetweenOnesAndZeros(),
                     number.GetMyNumberInString());
-                Console.Write(msg);
+                Console.WriteLine(msg);
             }
+            msg = string.Format("Most ones in number is {0} (Binary : {1})", i_arrayOfBooleanNumbers[BooleanNumber.GetMostOnesInNumber()[1]].GetDecimalNumber(),
+                i_arrayOfBooleanNumbers[BooleanNumber.GetMostOnesInNumber()[1]].GetMyNumberInString());
+            Console.WriteLine(msg);
+            msg = string.Format("Total number of ones: {0}", BooleanNumber.GetNumberOfOnesInAllNumbers());
+            Console.WriteLine(msg);
         }
 
     }

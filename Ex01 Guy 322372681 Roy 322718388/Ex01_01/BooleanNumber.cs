@@ -14,8 +14,7 @@ namespace Ex01_01
 
         protected static int[] s_LongestOnesSequence = new int[2]; // Array of 2 int: [0] for value, [1] for index,
 
-        protected static int[]
-            s_MostOnesInNumber = new int[2]; // need to check with GuyRo if we could use variables like Tuple
+        protected static int[] s_MostOnesInNumber = new int[2]; // need to check with GuyRo if we could use variables like Tuple
 
         protected static int s_NumberOfOnesInAllNumbers = 0;
         protected static float s_AvarageValueOfNumbersInDecimal = 0;
@@ -68,7 +67,7 @@ namespace Ex01_01
         {
             return m_decimalValue;
         }
-        public float GetAverageDecimalValue()
+        public static float GetAverageDecimalValue()
         {
             return s_AvarageValueOfNumbersInDecimal;
         }
@@ -83,7 +82,7 @@ namespace Ex01_01
         {
             for (int i = 0; i < m_Length; ++i)
             {
-                m_decimalValue += (int)(m_myNumberInBoolean[i] * Math.Pow(2, i));
+                m_decimalValue += (int)(m_myNumberInBoolean[i] * Math.Pow(2, m_Length - i - 1));
             }
         }
         private void calculateShiftsOfOnesAndZeros()
@@ -117,8 +116,8 @@ namespace Ex01_01
 
         private void countSequenceOfOnes()
         {
-            int currentSequenceOfOnes = 0;
-            int numberMaxSequenceOfOnes = 0;
+            int currentSequenceOfOnes = m_myNumberInBoolean[0];
+            int numberMaxSequenceOfOnes = m_myNumberInBoolean[0];
 
             for (int i = 0; i < m_Length; ++i)
             {
