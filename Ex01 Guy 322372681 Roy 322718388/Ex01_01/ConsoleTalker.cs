@@ -50,7 +50,6 @@ Please click ""enter"" after every number given."
             }
             else
             {
-                //if (numberLength != digitsToRead)        // NTS - replace to else function? why two ifs?
                 isTheNumberGood = false;
             }
             return isTheNumberGood;
