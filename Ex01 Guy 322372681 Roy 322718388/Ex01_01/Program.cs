@@ -5,12 +5,12 @@ namespace Ex01_01
 {
     public class Program
     {
+        private const int NumbersToRead = 4;
         public static void Main()
         {
-            int numbersToRead = 4;
-            string[] numbersFromUser = ConsoleTalker.ReceiveBooleanNumbersFromUser(numbersToRead);
-            BooleanNumber[] arrayOfBooleanNumbers = new BooleanNumber[4];
-            for(int i = 0; i < numbersToRead; ++i)
+            string[] numbersFromUser = ConsoleTalker.ReceiveBooleanNumbersFromUser(NumbersToRead);
+            BooleanNumber[] arrayOfBooleanNumbers = new BooleanNumber[NumbersToRead];
+            for(int i = 0; i < NumbersToRead; ++i)
             {
                 arrayOfBooleanNumbers[i] = BooleanNumber.Parse(numbersFromUser[i]);
                 arrayOfBooleanNumbers[i].CalculateNumberStatistics();
