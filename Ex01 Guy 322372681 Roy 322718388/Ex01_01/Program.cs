@@ -7,17 +7,21 @@ namespace Ex01_01
     {
         public static void Main()
         {
-            string msg = string.Format(
-@"Hi there, fellow man!
-Please enter 4 numbers represented by bits, 7 digit each.
-Please click ""enter"" after every number given.");
-            Console.WriteLine(msg);
-            string[] numbersFromUser = NumberTaker.ReceiveBooleanNumbersFromUser();
-            Console.WriteLine(numbersFromUser.Length);
-            foreach(string number in numbersFromUser)
+            int numbersToRead = 4;
+            string[] numbersFromUser = ConsoleTalker.ReceiveBooleanNumbersFromUser(numbersToRead);
+            BooleanNumber[] arrayOfBooleanNumbers = new BooleanNumber[4];
+            for(int i = 0; i < numbersToRead; ++i)
             {
-                Console.WriteLine(number);
+                arrayOfBooleanNumbers[i] = BooleanNumber.Parse(numbersFromUser[i]);
+                arrayOfBooleanNumbers[i].CalculateNumberStatistics();
             }
+            
+            BooleanNumber.CalculateAverageDecimalValues(arrayOfBooleanNumbers);
+            BooleanNumber.SortArrayDecendingByDecimalValues(arrayOfBooleanNumbers);
+            ConsoleTalker.ShowStatistics(arrayOfBooleanNumbers);
+
+
+            
         }
     }
 }
