@@ -19,9 +19,6 @@ namespace Ex01_01
             BooleanNumber.CalculateAverageDecimalValues(arrayOfBooleanNumbers);
             BooleanNumber.SortArrayDecendingByDecimalValues(arrayOfBooleanNumbers);
             ConsoleTalker.ShowStatistics(arrayOfBooleanNumbers);
-
-
-            
         }
     }
 }

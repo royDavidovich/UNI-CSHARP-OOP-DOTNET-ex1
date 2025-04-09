@@ -11,9 +11,10 @@ namespace Ex01_01
         public static string[] ReceiveBooleanNumbersFromUser(int i_numOfNumbersToRead)
         {
             string msg = string.Format(
-                @"Hi there, fellow man!
-Please enter 4 numbers represented by bits, 7 digit each.
-Please click ""enter"" after every number given.");
+@"Hi there, fellow man!
+Please enter 4 numbers- represented in bits, 7 digit each.
+Please click ""enter"" after every number given."
+                                        );
             Console.WriteLine(msg);
             string[] booleanNumbers = new string[i_numOfNumbersToRead]; 
             int numsRead = 0;
@@ -33,8 +34,8 @@ Please click ""enter"" after every number given.");
 
         private static bool numberIsNotGood(string i_numProvidedByUser)
         {
-            bool isTheNumberGood = true;
-            int digitsToRead = 7;
+            bool isTheNumberGood = true;        // NTS - not using convention
+            int digitsToRead = 7;               // NTS - magic number
             int numberLength = i_numProvidedByUser.Length;
             if(numberLength == digitsToRead)
             {
@@ -47,8 +48,9 @@ Please click ""enter"" after every number given.");
                     }
                 }
             }
-            if(numberLength != digitsToRead)
+            else
             {
+                //if (numberLength != digitsToRead)        // NTS - replace to else function? why two ifs?
                 isTheNumberGood = false;
             }
             return isTheNumberGood;

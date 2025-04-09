@@ -6,15 +6,15 @@ namespace Ex01_01
 {
     public class BooleanNumber
     {
-        private int[] m_myNumberInBoolean = new int[7];
+        private int[] m_myNumberInBoolean = new int[7];     //NTS - 7 is a magic number
         private int m_Length = 7;
         private int m_decimalValue = 0;
         private int m_ShiftsBetweenOnesAndZeros = 0;
         private string m_myNumberInString = "";
 
-        protected static int[] s_LongestOnesSequence = new int[2]; // Array of 2 int: [0] for value, [1] for index,
+        protected static int[] s_LongestOnesSequence = new int[2];      // Array of 2 int: [0] for value, [1] for index,
 
-        protected static int[] s_MostOnesInNumber = new int[2]; // need to check with GuyRo if we could use variables like Tuple
+        protected static int[] s_MostOnesInNumber = new int[2];         // need to check with GuyRo if we could use variables like Tuple
 
         protected static int s_NumberOfOnesInAllNumbers = 0;
         protected static float s_AvarageValueOfNumbersInDecimal = 0;
@@ -34,7 +34,6 @@ namespace Ex01_01
         {
             return m_myNumberInBoolean;
         }
-
         public string GetMyNumberInString()
         {
             return m_myNumberInString;
@@ -82,7 +81,7 @@ namespace Ex01_01
         {
             for (int i = 0; i < m_Length; ++i)
             {
-                m_decimalValue += (int)(m_myNumberInBoolean[i] * Math.Pow(2, m_Length - i - 1));
+                m_decimalValue += (int)(m_myNumberInBoolean[i] * Math.Pow(2, m_Length - i - 1));        // NTS - why explicit convertion here?
             }
         }
         private void calculateShiftsOfOnesAndZeros()
@@ -114,7 +113,7 @@ namespace Ex01_01
             s_NumberOfOnesInAllNumbers += numberOfOnesOnCurrentNumber;
         }
 
-        private void countSequenceOfOnes()
+        private void countSequenceOfOnes()      //  NTS - make readable lol
         {
             int currentSequenceOfOnes = m_myNumberInBoolean[0];
             int numberMaxSequenceOfOnes = m_myNumberInBoolean[0];
@@ -163,6 +162,7 @@ namespace Ex01_01
                 {
                     if (i_arrayOfBooleanNumbers[i].m_decimalValue < i_arrayOfBooleanNumbers[j].m_decimalValue)
                     {
+                        //  NTS - can define a BolleanNumber dedicated swap
                         BooleanNumber temp = i_arrayOfBooleanNumbers[i];
                         i_arrayOfBooleanNumbers[i] = i_arrayOfBooleanNumbers[j];
                         i_arrayOfBooleanNumbers[j] = temp;
