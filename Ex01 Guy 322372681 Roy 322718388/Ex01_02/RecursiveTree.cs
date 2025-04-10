@@ -25,7 +25,7 @@ namespace Ex01_02
             {
                 if (i_charToPrint == 'F')
                 {
-                    Console.WriteLine("F          |8|");
+                    Console.WriteLine("F          |8|");   //NTS need to implement better, its to spesific
                     Console.WriteLine("G          |8|");
                 }
                 else
