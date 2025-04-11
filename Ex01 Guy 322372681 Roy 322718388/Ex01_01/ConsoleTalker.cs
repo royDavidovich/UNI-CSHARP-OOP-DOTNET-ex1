@@ -7,7 +7,7 @@ namespace Ex01_01
         public static string[] ReceiveBinaryNumbersFromUser(int i_numOfNumbersToRead)
         {
             string msg = string.Format(
-@"Hi there, fellow man!
+@"Hi there!
 Please enter 4 numbers- represented in bits, 7 digit each.
 Please click ""enter"" after every number given."
                                         );
@@ -27,7 +27,6 @@ Please click ""enter"" after every number given."
             }
             return BinaryNumbers;
         }
-
         private static bool numberIsNotGood(string i_numProvidedByUser)
         {
             bool isTheNumberGood = true;        // NTS - not using convention
@@ -50,7 +49,6 @@ Please click ""enter"" after every number given."
             }
             return isTheNumberGood;
         }
-
         public static void ShowStatistics(BinaryNumber[] i_arrayOfBinaryNumbers)
         {
             showNumbersInDescendingOrder(i_arrayOfBinaryNumbers);

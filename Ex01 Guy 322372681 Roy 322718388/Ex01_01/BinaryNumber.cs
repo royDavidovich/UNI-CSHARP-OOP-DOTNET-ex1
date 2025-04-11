@@ -9,7 +9,6 @@ namespace Ex01_01
     {
         public const int k_NumOfDigits = 7;
 
-        private int[] m_NumberInBinary = new int[k_NumOfDigits];    
         private int m_Length = k_NumOfDigits;
         private int m_decimalValue = 0;
         private int m_ShiftsBetweenOnesAndZeros = 0;
@@ -29,18 +28,9 @@ namespace Ex01_01
         {
             BinaryNumber result = new BinaryNumber();
             result.m_Length = i_number.Length;
-            int i = 0;
-            foreach (char c in i_number)
-            {
-                result.m_NumberInBinary[i++] = c - '0';
-            }
             result.m_myNumberInString = i_number;
             return result;
         } 
-        public int[] GetMyNumberInBinary()
-        {
-            return m_NumberInBinary;
-        }
         public string GetMyNumberInString()
         {
             return m_myNumberInString;
@@ -61,12 +51,10 @@ namespace Ex01_01
         {
             return s_LongestOnesSequence;
         }
-
         public static string GetNumberWithLongestOneSequence()
         {
             return s_NumberWithLongestOnesSequenceAsBinary;
         }
-
         public static int GetMostOnesInNumber()
         {
             return s_MostOnesInNumber;
@@ -83,12 +71,10 @@ namespace Ex01_01
         {
             return s_AvarageValueOfNumbersInDecimal;
         }
-
         public static string GetNumberWithMostOnesAsBinary()
         {
             return s_NumberWithMostOnesAsBinary;
         }
-
         public static int GetNumberWithMostOnesAsDecimal()
         {
             return s_NumberWithMostOnesAsDecimal;
@@ -100,7 +86,6 @@ namespace Ex01_01
             countNumberOfOnes();
             calculateLongestSequenceOfOnes();
         }
-
         public static void CalculateAverageDecimalValues(BinaryNumber[] i_arrayOfBinaryNumbers)
         {
             foreach (BinaryNumber currentBool in i_arrayOfBinaryNumbers)
@@ -109,7 +94,6 @@ namespace Ex01_01
             }
             s_AvarageValueOfNumbersInDecimal /= 4;
         }
-
         public static void SortArrayDecendingByDecimalValues(BinaryNumber[] i_arrayOfBinaryNumbers)
         {
             for (int i = 0; i < i_arrayOfBinaryNumbers.Length; i++)
@@ -150,7 +134,7 @@ namespace Ex01_01
             int numberOfOnesOnCurrentNumber = 0;
             for(int i = 0; i < m_Length; i++)
             {
-                int currentDigit = (int)char.GetNumericValue(m_myNumberInString[i])
+                int currentDigit = (int)char.GetNumericValue(m_myNumberInString[i]);
                 if (currentDigit == 1)
                 {
                     ++numberOfOnesOnCurrentNumber;
@@ -169,19 +153,20 @@ namespace Ex01_01
         {
             int currentSequenceOfOnes = 0;
             int numberMaxSequenceOfOnes = 0;
-
+            int currentDigit = 0;
             for (int i = 0; i < m_Length; ++i)
             {
-                if (m_NumberInBinary[i] != 1)
+                currentDigit = (int)char.GetNumericValue(m_myNumberInString[i]);
+                if (currentDigit != 1)
                 {
                     continue;
                 }
-                while (m_NumberInBinary[i] != 0)
+                while (currentDigit != 0)
                 {
                     currentSequenceOfOnes++;
-                    ++i;
-                    if (i == 7)
+                    if (++i == 7)
                         break;
+                    currentDigit = (int)char.GetNumericValue(m_myNumberInString[i]);              
                 }
                 numberMaxSequenceOfOnes = Math.Max(numberMaxSequenceOfOnes, currentSequenceOfOnes);
                 currentSequenceOfOnes = 0;                
