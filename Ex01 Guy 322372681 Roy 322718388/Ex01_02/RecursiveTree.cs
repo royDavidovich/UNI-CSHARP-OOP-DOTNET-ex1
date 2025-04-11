@@ -6,7 +6,7 @@ namespace Ex01_02
     {
         public static void PrintTree()
         {
-            int numOfRows = 15;
+            int numOfRows = 9;
             printTreeRecursive(ref numOfRows, 0, 'A', 1, numOfRows);
         }
 
@@ -21,12 +21,13 @@ namespace Ex01_02
                 i_lastPrintedNumber = 1;
             }
 
-            if (i_currentLineNumber + 1 == i_numberOfLines)
+            if (i_currentLineNumber + 1 == i_numberOfLines - 1)
             {
                 i_middleTreePosition -= 2;
                 Console.Write("{0} ", i_lastPrintedChar);
                 PrintSpaces(i_middleTreePosition);
                 Console.WriteLine("|{0}|", i_lastPrintedNumber);
+                Console.WriteLine();
                 Console.Write("{0} ", ++i_lastPrintedChar);
                 PrintSpaces(i_middleTreePosition);
                 Console.WriteLine("|{0}|", i_lastPrintedNumber);
@@ -36,6 +37,7 @@ namespace Ex01_02
                 Console.Write("{0}", i_lastPrintedChar);
                 PrintSpaces(i_numberOfLines - i_currentLineNumber - 1);
                 PrintNumbersInRow((i_currentLineNumber * 2) + 1, ref i_lastPrintedNumber);
+                Console.WriteLine();
                 printTreeRecursive(ref i_numberOfLines, ++i_currentLineNumber, ++i_lastPrintedChar, i_lastPrintedNumber, i_middleTreePosition);
             }
         }
