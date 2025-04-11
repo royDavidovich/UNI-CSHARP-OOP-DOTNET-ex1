@@ -11,7 +11,6 @@ namespace Ex01_01
         private int[] m_NumberInBinary = new int[k_NumOfDigits];    
         private int m_Length = k_NumOfDigits;
         private int m_decimalValue = 0;
-        private int m_myIndexInArray = -1;                              //NTS i dont know how to initilize this field
         private int m_ShiftsBetweenOnesAndZeros = 0;
         private string m_myNumberInString = "";
 
@@ -35,7 +34,6 @@ namespace Ex01_01
                 result.m_NumberInBinary[i++] = c - '0';
             }
             result.m_myNumberInString = i_number;
-            result.m_myIndexInArray = index;
             return result;
         } 
         public int[] GetMyNumberInBinary()
@@ -126,10 +124,13 @@ namespace Ex01_01
         }
         private void calculateDecimalValue()
         {
-            for (int i = 0; i < m_Length; ++i)
+            int j = 0;
+            foreach (char c in m_myNumberInString)
             {
-                m_decimalValue += (int)(m_NumberInBinary[i] * Math.Pow(2, m_Length - i - 1));        // NTS - why explicit convertion here?
+                int currentDigit = c - '0';
+                m_decimalValue += (int)((currentDigit) * Math.Pow(2, m_Length - (j++) - 1));
             }
+
         }
         private void calculateShiftsOfOnesAndZeros()
         {
