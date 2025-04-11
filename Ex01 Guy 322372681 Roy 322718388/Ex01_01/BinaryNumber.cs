@@ -4,6 +4,7 @@ using System.Management.Instrumentation;
 
 namespace Ex01_01
 {
+   
     public class BinaryNumber
     {
         public const int k_NumOfDigits = 7;
@@ -127,33 +128,33 @@ namespace Ex01_01
             int j = 0;
             foreach (char c in m_myNumberInString)
             {
-                int currentDigit = c - '0';
+                int currentDigit = (int)char.GetNumericValue(c);
                 m_decimalValue += (int)((currentDigit) * Math.Pow(2, m_Length - (j++) - 1));
-            }
-
+            }  
         }
         private void calculateShiftsOfOnesAndZeros()
         {
-            int currentDigit = m_NumberInBinary[0];
-            for (int i = 1; i < m_Length; ++i)
+            int currentDigit = (int)char.GetNumericValue(m_myNumberInString[0]);
+            for (int i = 1; i < m_myNumberInString.Length; i++)
             {
-                if (currentDigit != m_NumberInBinary[i])
+                int digit = (int)char.GetNumericValue(m_myNumberInString[i]);
+                if (currentDigit != digit)
                 {
                     ++m_ShiftsBetweenOnesAndZeros;
                 }
-                currentDigit = m_NumberInBinary[i];
+                currentDigit = digit;
             }
         }
         private void countNumberOfOnes()
         {
             int numberOfOnesOnCurrentNumber = 0;
-            for (int i = 0; i < m_Length; ++i)
+            for(int i = 0; i < m_Length; i++)
             {
-                if (m_NumberInBinary[i] == 1)
+                int currentDigit = (int)char.GetNumericValue(m_myNumberInString[i])
+                if (currentDigit == 1)
                 {
                     ++numberOfOnesOnCurrentNumber;
                 }
-
             }
             if(numberOfOnesOnCurrentNumber == Math.Max(s_MostOnesInNumber, numberOfOnesOnCurrentNumber))
             {
@@ -164,7 +165,6 @@ namespace Ex01_01
 
             s_NumberOfOnesInAllNumbers += numberOfOnesOnCurrentNumber;
         }
-
         private void calculateLongestSequenceOfOnes()     
         {
             int currentSequenceOfOnes = 0;
