@@ -1,55 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex01_02
 {
     public class RecursiveTree
     {
-       
-        public static void PrintTree()
+        public static void PrintTree(int i_numOfRows)
         {
-            printTreeRecursive(1, 'A', 1, 11);
+            printTreeRecursive(ref i_numOfRows, 0, 'A', 1, i_numOfRows);
         }
 
-        private static void printTreeRecursive(int i_numToStartPrintFrom, char i_charToPrint, int i_numOfNumbers, int i_numOfSpaces)
+        private static void printTreeRecursive(ref int i_numberOfLines, int i_currentLineNumber, char i_lastPrintedChar, int i_lastPrintedNumber, int i_middleTreePosition)
         {
-            if (i_charToPrint == 'A')
+            if (i_lastPrintedChar == 'Z')
             {
-                Console.WriteLine("A           1");
-                printTreeRecursive(i_numToStartPrintFrom + 1, (char)((int)i_charToPrint + 1), i_numOfNumbers + 2, i_numOfSpaces - 2);
+                i_lastPrintedChar = 'A';
+            }
+            if (i_lastPrintedNumber == 10)
+            {
+                i_lastPrintedNumber = 1;
+            }
+
+            if (i_currentLineNumber + 1 == i_numberOfLines - 1)
+            {
+                i_middleTreePosition -= 2;
+                Console.Write("{0} ", i_lastPrintedChar);
+                printSpaces(i_middleTreePosition);
+                Console.WriteLine("|{0}|", i_lastPrintedNumber);
+                Console.WriteLine();
+                Console.Write("{0} ", ++i_lastPrintedChar);
+                printSpaces(i_middleTreePosition);
+                Console.WriteLine("|{0}|", i_lastPrintedNumber);
             }
             else
             {
-                if (i_charToPrint == 'F')
-                {
-                    Console.WriteLine("F          |8|");   //NTS need to implement better, its to spesific
-                    Console.WriteLine("G          |8|");
-                }
-                else
-                {
-                    Console.Write(i_charToPrint);
-                    for (int i = 0; i < i_numOfSpaces; i++)
-                    {
-                        Console.Write(" ");
-                    }
-                    for (int i = 0; i < i_numOfNumbers; i++)
-                    {
-                        Console.Write(i_numToStartPrintFrom + " ");
-                        i_numToStartPrintFrom = (i_numToStartPrintFrom + 1) % 10;
-                        if (i_numToStartPrintFrom == 0)
-                        {
-                            i_numToStartPrintFrom = 1;
-                        }
-                    }
-                    Console.Write('\n');
-                    printTreeRecursive(i_numToStartPrintFrom, (char)((int)i_charToPrint + 1), i_numOfNumbers + 2, i_numOfSpaces - 2);
-                }
-                   
+                Console.Write("{0}", i_lastPrintedChar);
+                printSpaces(i_numberOfLines - i_currentLineNumber - 1);
+                printNumbersInRow((i_currentLineNumber * 2) + 1, ref i_lastPrintedNumber);
+                Console.WriteLine();
+                printTreeRecursive(ref i_numberOfLines, ++i_currentLineNumber, ++i_lastPrintedChar, i_lastPrintedNumber, i_middleTreePosition);
             }
-            return;
+        }
+
+        private static void printSpaces(int i_count)
+        {
+            if (i_count <= 0)
+            {
+                return;
+            }
+            Console.Write("  ");
+            printSpaces(i_count - 1);
+        }
+
+        private static void printNumbersInRow(int i_amountToPrintInRow, ref int i_numberToStartFrom)
+        {
+            for (int i = 0; i < i_amountToPrintInRow; i++)
+            {
+                Console.Write("{0} ", i_numberToStartFrom);
+                ++i_numberToStartFrom;
+                if (i_numberToStartFrom == 10)
+                {
+                    i_numberToStartFrom = 1;
+                }
+            }
+            Console.WriteLine();
         }
     }
 }
