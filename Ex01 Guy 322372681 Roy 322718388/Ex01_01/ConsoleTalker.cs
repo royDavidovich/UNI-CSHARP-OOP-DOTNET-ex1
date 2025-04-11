@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Ex01_01
 {
@@ -17,7 +18,7 @@ Please click ""enter"" after every number given."
             while(numsRead < i_numOfNumbersToRead)
             {
                 string currentStringNum = Console.ReadLine();
-                bool isNumberGood = numberIsNotGood(currentStringNum);
+                bool isNumberGood = isValidBinaryNumber(currentStringNum);
                 if(isNumberGood == false)
                 {
                     Console.WriteLine("You provided a wrong input. Please provide a 7 digits Binary number.");
@@ -27,28 +28,30 @@ Please click ""enter"" after every number given."
             }
             return BinaryNumbers;
         }
-        private static bool numberIsNotGood(string i_numProvidedByUser)
+        private static bool isValidBinaryNumber(string i_numProvidedByUser)
         {
-            bool isTheNumberGood = true;        // NTS - not using convention
-            int digitsToRead = 7;               // NTS - magic number
-            int numberLength = i_numProvidedByUser.Length;
-            if(numberLength == digitsToRead)
+            const bool v_isValid = true;
+            const int DigitsToRead = 7;
+            bool result = v_isValid;
+
+            if (i_numProvidedByUser.Length != DigitsToRead)
             {
-                foreach(char c in i_numProvidedByUser)
+                result = !v_isValid;
+            }
+            else
+            {
+                foreach (char c in i_numProvidedByUser)
                 {
-                    if(c != '0' && c != '1')
+                    if (c != '0' && c != '1')
                     {
-                        isTheNumberGood = false;
+                        result = !v_isValid;
                         break;
                     }
                 }
             }
-            else
-            {
-                isTheNumberGood = false;
-            }
-            return isTheNumberGood;
+            return result;
         }
+
         public static void ShowStatistics(BinaryNumber[] i_arrayOfBinaryNumbers)
         {
             showNumbersInDescendingOrder(i_arrayOfBinaryNumbers);
@@ -62,24 +65,23 @@ Please click ""enter"" after every number given."
         private static void showNumbersInDescendingOrder(BinaryNumber[] i_array)
         {
             Console.WriteLine("Numbers in descending order:");
-            string decimalValues = "";
+            StringBuilder decimalValues = new StringBuilder();
             for (int i = 0; i < i_array.Length; i++)
             {
-                decimalValues += string.Format("{0}", i_array[i].GetDecimalNumber());
+                decimalValues.Append(i_array[i].GetDecimalNumber());
+
                 if (i < i_array.Length - 1)
                 {
-                    decimalValues += ", ";
+                    decimalValues.Append(", ");
                 }
             }
-            Console.WriteLine(string.Format("{0}", decimalValues));
+            Console.WriteLine(decimalValues.ToString());
         }
-
         private static void showAverageDecimalValue()
         {
             float averageValue = BinaryNumber.GetAverageDecimalValue();
             Console.WriteLine(string.Format("Average value of decimal numbers is {0}", averageValue));
         }
-
         private static void showLongestSequenceOfOnes(BinaryNumber[] i_array)
         {
             int longestSequence = BinaryNumber.GetLongestOnesSequence();
@@ -87,7 +89,6 @@ Please click ""enter"" after every number given."
                 "Longest sequence of ones is {0}, in number {1}",
                 longestSequence, BinaryNumber.GetNumberWithLongestOneSequence()));
         }
-
         private static void showSwitchesBetweenOnesAndZeros(BinaryNumber[] i_array)
         {
             Console.WriteLine("Number of switches between One and Zero:");
@@ -99,7 +100,6 @@ Please click ""enter"" after every number given."
                     number.GetMyNumberInString()));
             }
         }
-
         private static void showMostOnesInNumber(BinaryNumber[] i_array)
         {
             int mostOnes = BinaryNumber.GetMostOnesInNumber();
@@ -108,7 +108,6 @@ Please click ""enter"" after every number given."
             Console.WriteLine(string.Format(
                 "Most ones are {0} in number {1} (Binary representation: {2})", mostOnes, decimalNumber, binaryNumber));
         }
-
         private static void showTotalNumberOfOnes()
         {
             Console.WriteLine(string.Format(
