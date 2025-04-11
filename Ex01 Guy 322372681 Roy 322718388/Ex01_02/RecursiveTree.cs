@@ -4,10 +4,9 @@ namespace Ex01_02
 {
     public class RecursiveTree
     {
-        public static void PrintTree()
+        public static void PrintTree(int i_numOfRows)
         {
-            int numOfRows = 15;
-            printTreeRecursive(ref numOfRows, 0, 'A', 1, numOfRows);
+            printTreeRecursive(ref i_numOfRows, 0, 'A', 1, i_numOfRows);
         }
 
         private static void printTreeRecursive(ref int i_numberOfLines, int i_currentLineNumber, char i_lastPrintedChar, int i_lastPrintedNumber, int i_middleTreePosition)
@@ -21,36 +20,38 @@ namespace Ex01_02
                 i_lastPrintedNumber = 1;
             }
 
-            if (i_currentLineNumber + 1 == i_numberOfLines)
+            if (i_currentLineNumber + 1 == i_numberOfLines - 1)
             {
                 i_middleTreePosition -= 2;
                 Console.Write("{0} ", i_lastPrintedChar);
-                PrintSpaces(i_middleTreePosition);
+                printSpaces(i_middleTreePosition);
                 Console.WriteLine("|{0}|", i_lastPrintedNumber);
+                Console.WriteLine();
                 Console.Write("{0} ", ++i_lastPrintedChar);
-                PrintSpaces(i_middleTreePosition);
+                printSpaces(i_middleTreePosition);
                 Console.WriteLine("|{0}|", i_lastPrintedNumber);
             }
             else
             {
                 Console.Write("{0}", i_lastPrintedChar);
-                PrintSpaces(i_numberOfLines - i_currentLineNumber - 1);
-                PrintNumbersInRow((i_currentLineNumber * 2) + 1, ref i_lastPrintedNumber);
+                printSpaces(i_numberOfLines - i_currentLineNumber - 1);
+                printNumbersInRow((i_currentLineNumber * 2) + 1, ref i_lastPrintedNumber);
+                Console.WriteLine();
                 printTreeRecursive(ref i_numberOfLines, ++i_currentLineNumber, ++i_lastPrintedChar, i_lastPrintedNumber, i_middleTreePosition);
             }
         }
 
-        static void PrintSpaces(int count)
+        private static void printSpaces(int i_count)
         {
-            if (count <= 0)
+            if (i_count <= 0)
             {
                 return;
             }
             Console.Write("  ");
-            PrintSpaces(count - 1);
+            printSpaces(i_count - 1);
         }
 
-        static void PrintNumbersInRow(int i_amountToPrintInRow, ref int i_numberToStartFrom)
+        private static void printNumbersInRow(int i_amountToPrintInRow, ref int i_numberToStartFrom)
         {
             for (int i = 0; i < i_amountToPrintInRow; i++)
             {
