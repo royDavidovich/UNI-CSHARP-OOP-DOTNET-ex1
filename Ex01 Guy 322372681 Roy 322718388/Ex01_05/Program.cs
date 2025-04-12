@@ -1,10 +1,11 @@
-﻿namespace Ex01_04
+﻿
+namespace Ex01_05
 {
     public class Program
     {
         public static void Main()
         {
-            ConsoleHnadler.RecieveUsersInput();
+
         }
     }
 }
