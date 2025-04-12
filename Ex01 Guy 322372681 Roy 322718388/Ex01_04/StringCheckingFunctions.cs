@@ -62,7 +62,7 @@ namespace Ex01_04
 
         public static bool IsStringRepresentsANumberAndNumberDivisableBy3(string i_SuspectedNumber, out bool o_IsDivisiableBy3)
         {
-            bool isStringANumber = isStringRepresentsANumber(i_SuspectedNumber, out int parsedInputNumber);
+            bool isStringANumber = isStringRepresentsANumber(i_SuspectedNumber, out long parsedInputNumber);
             if (isStringANumber && (parsedInputNumber % 3 == 0))
             {
                 o_IsDivisiableBy3 = true;
@@ -75,9 +75,9 @@ namespace Ex01_04
             return isStringANumber;
         }
         
-        private static bool isStringRepresentsANumber(string i_SuspectedNumber, out int o_RepresentedNumber)
+        private static bool isStringRepresentsANumber(string i_SuspectedNumber, out long o_RepresentedNumber)
         {
-            return int.TryParse(i_SuspectedNumber, out o_RepresentedNumber);
+            return long.TryParse(i_SuspectedNumber, out o_RepresentedNumber);
         }
     }
 }
