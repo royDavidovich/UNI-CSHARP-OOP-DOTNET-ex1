@@ -37,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleHnadler.cs" />
-    <Compile Include="PalindromeChecker.cs" />
+    <Compile Include="StringCheckingFunctions.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,13 +13,16 @@ namespace Ex01_04
 Welcome to our fourth program. Lets have some FUN!
 Please enter a 12 charachters long string: ");
             Console.WriteLine(initMsg);
-            string usersString = Console.ReadLine();
+            string userString = Console.ReadLine();
 
             //functions
-            bool isMyStringPolindrome = PalindromeChecker.CheckForPalindrome(usersString);
+            bool isMyStringPolindrome = StringCheckingFunctions.CheckForPalindrome(userString);
             Console.WriteLine(string.Format("is palindrome: {0}", isMyStringPolindrome ? "Yes":"No"));
 
-
+            if (StringCheckingFunctions.IsStringRepresentsANumberAndNumberDivisableBy3(userString, out bool isDivisiableBy3))
+            {
+                Console.WriteLine(string.Format("is divisiable by 3 w/o remainder: {0}", isDivisiableBy3 ? "Yes" : "No"));
+            }
         }
     }
 }
