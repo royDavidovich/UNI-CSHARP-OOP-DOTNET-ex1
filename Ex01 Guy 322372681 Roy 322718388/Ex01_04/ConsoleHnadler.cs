@@ -15,11 +15,18 @@ Please enter a 12 charachters long string: ");
 
             //functions
             bool isMyStringPolindrome = StringCheckingFunctions.CheckForPalindrome(userString);
-            Console.WriteLine(string.Format("is palindrome: {0}", isMyStringPolindrome ? "Yes":"No"));
+            Console.WriteLine(string.Format("Is palindrome: {0}", isMyStringPolindrome ? "Yes":"No"));
 
             if (StringCheckingFunctions.IsStringRepresentsANumberAndNumberDivisableBy3(userString, out bool isDivisiableBy3))
             {
-                Console.WriteLine(string.Format("is divisiable by 3 w/o remainder: {0}", isDivisiableBy3 ? "Yes" : "No"));
+                Console.WriteLine(string.Format("Is divisiable by 3 w/o remainder: {0}", isDivisiableBy3 ? "Yes" : "No"));
+            }
+
+            if (StringCheckingFunctions.IsStringAllEnglishLetters(userString, out int numberOfUppercaseLetters, out bool isStringAscendingAlphabetical))
+            {
+                Console.WriteLine(string.Format(
+@"Number of UPPERCASE letters: {0}
+Is ascending alphabetical order? {1}", numberOfUppercaseLetters, isStringAscendingAlphabetical ? "Yes" : "No"));
             }
         }
 
