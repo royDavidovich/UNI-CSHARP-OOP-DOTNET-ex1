@@ -140,14 +140,18 @@ namespace Ex01_01
                     ++numberOfOnesOnCurrentNumber;
                 }
             }
-            if(numberOfOnesOnCurrentNumber == Math.Max(s_MostOnesInNumber, numberOfOnesOnCurrentNumber))
+            updateNumberWithMostOnes(numberOfOnesOnCurrentNumber);
+        }
+        private void updateNumberWithMostOnes(int i_numberOfOnesOnCurrentNumber)
+        {
+            if (i_numberOfOnesOnCurrentNumber == Math.Max(s_MostOnesInNumber, i_numberOfOnesOnCurrentNumber))
             {
-                s_MostOnesInNumber = numberOfOnesOnCurrentNumber;
+                s_MostOnesInNumber = i_numberOfOnesOnCurrentNumber;
                 s_NumberWithMostOnesAsBinary = m_myNumberInString;
                 s_NumberWithMostOnesAsDecimal = m_decimalValue;
             }
 
-            s_NumberOfOnesInAllNumbers += numberOfOnesOnCurrentNumber;
+            s_NumberOfOnesInAllNumbers += i_numberOfOnesOnCurrentNumber;
         }
         private void calculateLongestSequenceOfOnes()     
         {
@@ -171,14 +175,16 @@ namespace Ex01_01
                 numberMaxSequenceOfOnes = Math.Max(numberMaxSequenceOfOnes, currentSequenceOfOnes);
                 currentSequenceOfOnes = 0;                
             }
-
-            if (numberMaxSequenceOfOnes == Math.Max(s_LongestOnesSequence, numberMaxSequenceOfOnes))
-             {
-                s_LongestOnesSequence = numberMaxSequenceOfOnes;
-                s_NumberWithLongestOnesSequenceAsBinary = m_myNumberInString;
-             }           
+                updateNumberWithLongestSequenceOfOnes(numberMaxSequenceOfOnes);
         }
-
+        private void updateNumberWithLongestSequenceOfOnes(int i_numberMaxSequenceOfOnes)
+        {
+            if (i_numberMaxSequenceOfOnes == Math.Max(s_LongestOnesSequence, i_numberMaxSequenceOfOnes))
+            {
+                s_LongestOnesSequence = i_numberMaxSequenceOfOnes;
+                s_NumberWithLongestOnesSequenceAsBinary = m_myNumberInString;
+            }
+        }
         private static void swap(ref BinaryNumber io_First, ref BinaryNumber io_Second)
         {
             BinaryNumber temp = io_First;
