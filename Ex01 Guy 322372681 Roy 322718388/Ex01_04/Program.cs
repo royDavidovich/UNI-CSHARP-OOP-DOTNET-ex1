@@ -4,7 +4,7 @@
     {
         public static void Main()
         {
-            ConsoleHnadler.RecieveUsersInput();
+            ConsoleHandler.RecieveUsersInput();
         }
     }
 }

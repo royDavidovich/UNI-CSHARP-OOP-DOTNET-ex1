@@ -2,7 +2,7 @@
 
 namespace Ex01_04
 {
-    internal class ConsoleHnadler
+    internal class ConsoleHandler
     {
         public static void RecieveUsersInput()
         {

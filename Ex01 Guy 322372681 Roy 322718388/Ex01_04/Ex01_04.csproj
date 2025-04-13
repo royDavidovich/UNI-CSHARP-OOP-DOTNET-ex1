@@ -36,7 +36,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleHnadler.cs" />
+    <Compile Include="ConsoleHandler.cs" />
     <Compile Include="StringCheckingFunctions.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

@@ -39,7 +39,6 @@ namespace Ex01_04
 
             return isPalindrome;
         }
-
         public static bool IsStringRepresentsANumberAndNumberDivisableBy3(string i_SuspectedNumber, out bool o_IsDivisiableBy3)
         {
             bool isStringANumber = isStringRepresentsANumber(i_SuspectedNumber, out long parsedInputNumber);
@@ -53,12 +52,10 @@ namespace Ex01_04
             }
             return isStringANumber;
         }
-
         private static bool isStringRepresentsANumber(string i_SuspectedNumber, out long o_RepresentedNumber)
         {
             return long.TryParse(i_SuspectedNumber, out o_RepresentedNumber);
         }
-
         public static bool IsStringAllEnglishLetters(string i_SuspectedString, out int o_NumberOfUppercaseLetters, out bool o_IsAscendingAlphabetical)
         {
             o_NumberOfUppercaseLetters = 0;
@@ -74,7 +71,6 @@ namespace Ex01_04
 
             return validAllLettersString;
         }
-
         private static int countUppercasedLetters(string i_SuspectedString)
         {
             int numberOfUppercaseLetters = 0;
@@ -90,7 +86,6 @@ namespace Ex01_04
 
             return numberOfUppercaseLetters;
         }
-
         private static bool isStringSortedAlphabetically(string i_SuspectedString)
         {
             bool isStringAscendingAlphabetical = true;
