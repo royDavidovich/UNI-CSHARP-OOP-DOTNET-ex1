@@ -38,28 +38,6 @@ namespace Ex01_04
             return isPalindrome;
         }
 
-        //public static bool CheckIfStringRepresentsNumber(string i_SuspectedNumber, out int o_RepresentedNumber)
-        //{
-        //    bool isNumber = true;
-        //    int inputStringLength = i_SuspectedNumber.Length;
-        //    o_RepresentedNumber = 0;
-        //
-        //    for (int i = 0; i < inputStringLength; ++i)
-        //    {
-        //        if (i_SuspectedNumber[i] < '0' || i_SuspectedNumber[i] > '9')
-        //        {
-        //            isNumber = false;
-        //            break;
-        //        }
-        //    }
-        //    if (isNumber)
-        //    {
-        //        o_RepresentedNumber = int.Parse(i_SuspectedNumber);
-        //    }
-        //
-        //    return isNumber;
-        //}
-
         public static bool IsStringRepresentsANumberAndNumberDivisableBy3(string i_SuspectedNumber, out bool o_IsDivisiableBy3)
         {
             bool isStringANumber = isStringRepresentsANumber(i_SuspectedNumber, out long parsedInputNumber);
