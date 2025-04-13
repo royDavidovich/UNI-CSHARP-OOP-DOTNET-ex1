@@ -8,7 +8,6 @@ namespace Ex01_02
         {
             printTreeRecursive(ref i_numOfRows, 0, 'A', 1, i_numOfRows);
         }
-
         private static void printTreeRecursive(ref int i_numberOfLines, int i_currentLineNumber, char i_lastPrintedChar, int i_lastPrintedNumber, int i_middleTreePosition)
         {
             if (i_lastPrintedChar == 'Z')
@@ -19,28 +18,34 @@ namespace Ex01_02
             {
                 i_lastPrintedNumber = 1;
             }
-
             if (i_currentLineNumber + 1 == i_numberOfLines - 1)
             {
-                i_middleTreePosition -= 2;
-                Console.Write("{0} ", i_lastPrintedChar);
-                printSpaces(i_middleTreePosition);
-                Console.WriteLine("|{0}|", i_lastPrintedNumber);
-                Console.WriteLine();
-                Console.Write("{0} ", ++i_lastPrintedChar);
-                printSpaces(i_middleTreePosition);
-                Console.WriteLine("|{0}|", i_lastPrintedNumber);
+                printTrunkOfTree(i_middleTreePosition, i_lastPrintedNumber, i_lastPrintedChar);
             }
             else
             {
-                Console.Write("{0}", i_lastPrintedChar);
-                printSpaces(i_numberOfLines - i_currentLineNumber - 1);
-                printNumbersInRow((i_currentLineNumber * 2) + 1, ref i_lastPrintedNumber);
-                Console.WriteLine();
+                printRowInTree(i_lastPrintedNumber, i_lastPrintedChar, i_numberOfLines, i_currentLineNumber);
                 printTreeRecursive(ref i_numberOfLines, ++i_currentLineNumber, ++i_lastPrintedChar, i_lastPrintedNumber, i_middleTreePosition);
             }
         }
-
+        private static void printRowInTree(int i_lastPrintedNumber, char i_lastPrintedChar, int i_numberOfLines, int i_currentLineNumber)
+        {
+            Console.Write("{0}", i_lastPrintedChar);
+            printSpaces(i_numberOfLines - i_currentLineNumber - 1);
+            printNumbersInRow((i_currentLineNumber * 2) + 1, ref i_lastPrintedNumber);
+            Console.WriteLine();
+        }
+        private static void printTrunkOfTree(int i_middleTreePosition, int i_lastPrintedNumber, char i_lastPrintedChar)
+        {
+            i_middleTreePosition -= 2;
+            Console.Write("{0} ", i_lastPrintedChar);
+            printSpaces(i_middleTreePosition);
+            Console.WriteLine("|{0}|", i_lastPrintedNumber);
+            Console.WriteLine();
+            Console.Write("{0} ", ++i_lastPrintedChar);
+            printSpaces(i_middleTreePosition);
+            Console.WriteLine("|{0}|", i_lastPrintedNumber);
+        }
         private static void printSpaces(int i_count)
         {
             if (i_count <= 0)
