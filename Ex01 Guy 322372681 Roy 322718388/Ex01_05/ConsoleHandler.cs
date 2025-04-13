@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Ex01_05
 {
@@ -29,35 +30,30 @@ Please enter a whole number with 8 digits: ");
         public static void ShowStatistics(NumberWithStatistics i_number)
         {
             int firstDigit = (int)(char.GetNumericValue(i_number.GetNumberAsString()[0]));
-            int numOfDigitSmallerThanFirstDigit = i_number.GetDigitsSmallerThanFirstDigit();
-            showNumberOfDigitsSmallerThenFirstDigit(firstDigit, numOfDigitSmallerThanFirstDigit);
-
-
-
-            int numOfDigitsDivisibleBy3 = i_number.GetDigitsDivisibleBy3();
-            showHowManyDigitsDivisibleBy3(numOfDigitsDivisibleBy3);
-
-
-
+            int numOfDigitSmallerThanFirstDigit = i_number.GetNumOfDigitsSmallerThanFirstDigit();
+            int numOfDigitsDivisibleBy3 = i_number.GetNumOfDigitsDivisibleBy3();
+            string digitsDivisibleBy3 = i_number.GetDigitsDivisibleBy3().ToString();
+            string digits = i_number.GetDigitsSmallerThanFirstDigit().ToString();
             int differenceBetweenLargestDigitToSmallestDigit = i_number.GetDifferenceBetweenLargestAndSmallestDigits();
-            showDifferenceBetweenLargestDigitToSmallestDigit(differenceBetweenLargestDigitToSmallestDigit);
-
             char mostCommonDigitInNumber = i_number.GetMostFrequentDigit();
             int frequencyOfMostCommonDigit = i_number.GetFrequencyOfMostFrequentDigit();
 
+            showNumberOfDigitsSmallerThenFirstDigit(firstDigit, numOfDigitSmallerThanFirstDigit, digits);   
+            showHowManyDigitsDivisibleBy3(numOfDigitsDivisibleBy3, digitsDivisibleBy3);     
+            showDifferenceBetweenLargestDigitToSmallestDigit(differenceBetweenLargestDigitToSmallestDigit);
             showMostCommonDigitAndNumberOfFrequency(mostCommonDigitInNumber, frequencyOfMostCommonDigit);
         }
-        private static void showNumberOfDigitsSmallerThenFirstDigit(int i_firstDigit, int i_numOfDigitSmallerThanFirstDigit)
+        private static void showNumberOfDigitsSmallerThenFirstDigit(int i_firstDigit, int i_numOfDigitSmallerThanFirstDigit, string i_digits)
         {
             Console.WriteLine(string.Format(
 @"1.The first (most left) digit is {0}. There are {1} digits in the provided number 
-which are smaller then {0}.", i_firstDigit, i_numOfDigitSmallerThanFirstDigit));
+which are smaller then {0}, which are {2}", i_firstDigit, i_numOfDigitSmallerThanFirstDigit, i_digits));
             Console.WriteLine();    
         }
-        private static void showHowManyDigitsDivisibleBy3(int i_numOfDigitsDivisibleBy3)
+        private static void showHowManyDigitsDivisibleBy3(int i_numOfDigitsDivisibleBy3, string i_digitsDivisibleBy3)
         { 
             Console.WriteLine(string.Format(
-@"2.There are {0} numbers which are divisible by 3.", i_numOfDigitsDivisibleBy3));
+@"2.There are {0} numbers which are divisible by 3, which are {1}", i_numOfDigitsDivisibleBy3, i_digitsDivisibleBy3));
             Console.WriteLine();
         }
         private static void showDifferenceBetweenLargestDigitToSmallestDigit(int i_differenceBetweenLargestDigitToSmallestDigit)

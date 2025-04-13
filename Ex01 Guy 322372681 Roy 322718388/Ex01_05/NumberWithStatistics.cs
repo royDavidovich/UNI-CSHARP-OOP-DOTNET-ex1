@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
 
 namespace Ex01_05
 {
     public class NumberWithStatistics
     {
         string m_NumberAsString = "";
-        int m_DigitsSmallerThanFirstDigit = 0;
-        int m_DigitsDivisibleBy3 = 0;
+        int m_NumOfDigitsSmallerThanFirstDigit = 0;
+        StringBuilder m_DigitsSmallerThanFirstDigit = new StringBuilder();
+        int m_NumOfDigitsDivisibleBy3 = 0;
+        StringBuilder m_DigitsDivisibleBy3 = new StringBuilder();
         int m_DifferenceBetweenLargestAndSmallestDigits = 0;
         char m_MostFrequentDigit = '0';
         int m_FrequencyOfMostCommonDigit = 0;
@@ -20,11 +24,20 @@ namespace Ex01_05
         {
             return m_NumberAsString;
         }
-        public int GetDigitsSmallerThanFirstDigit()
+        public int GetNumOfDigitsSmallerThanFirstDigit()
+        {
+            return m_NumOfDigitsSmallerThanFirstDigit;
+        }
+
+        public StringBuilder GetDigitsSmallerThanFirstDigit()
         {
             return m_DigitsSmallerThanFirstDigit;
         }
-        public int GetDigitsDivisibleBy3()
+        public int GetNumOfDigitsDivisibleBy3()
+        {
+            return m_NumOfDigitsDivisibleBy3;
+        }
+        public StringBuilder GetDigitsDivisibleBy3()
         {
             return m_DigitsDivisibleBy3;
         }
@@ -54,7 +67,9 @@ namespace Ex01_05
             {
                 if (char.GetNumericValue(m_NumberAsString[i]) < char.GetNumericValue(firstDigit))
                 {
-                    m_DigitsSmallerThanFirstDigit++;
+                    m_NumOfDigitsSmallerThanFirstDigit++;
+                    m_DigitsSmallerThanFirstDigit.Append(m_NumberAsString[i]);
+                    m_DigitsSmallerThanFirstDigit.Append(' ');
                 }
             }
         }
@@ -90,7 +105,9 @@ namespace Ex01_05
             {
                 if (char.GetNumericValue(m_NumberAsString[i]) % 3 == 0)
                 {
-                    m_DigitsDivisibleBy3++;
+                    m_DigitsDivisibleBy3.Append(m_NumberAsString[i]);
+                    m_DigitsDivisibleBy3.Append(' ');
+                    m_NumOfDigitsDivisibleBy3++;
                 }
             }
         }
