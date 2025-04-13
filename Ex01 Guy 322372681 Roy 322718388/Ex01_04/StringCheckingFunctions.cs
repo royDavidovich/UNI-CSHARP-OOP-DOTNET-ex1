@@ -11,14 +11,12 @@ namespace Ex01_04
         {
             i_SuspectedPalindrome = i_SuspectedPalindrome.ToUpper();
             bool isPalindrome = checkForPalindromeHelper(i_SuspectedPalindrome);
-
             return isPalindrome;
         }
         private static bool checkForPalindromeHelper(string i_SuspectedPalindrome)
         {
             bool isPalindrome = true;
             int inputStringLength = i_SuspectedPalindrome.Length;
-
             if (inputStringLength <= 1)
             {
                 isPalindrome = true;
@@ -36,10 +34,8 @@ namespace Ex01_04
 
                 isPalindrome = (isPalindrome && checkForPalindromeHelper(newSuspectedPalindrome));
             }
-
             return isPalindrome;
         }
-
         public static bool IsStringRepresentsANumberAndNumberDivisableBy3(string i_SuspectedNumber, out bool o_IsDivisiableBy3)
         {
             bool isStringANumber = isStringRepresentsANumber(i_SuspectedNumber, out long parsedInputNumber);
@@ -53,33 +49,27 @@ namespace Ex01_04
             }
             return isStringANumber;
         }
-
         private static bool isStringRepresentsANumber(string i_SuspectedNumber, out long o_RepresentedNumber)
         {
             return long.TryParse(i_SuspectedNumber, out o_RepresentedNumber);
         }
-
         public static bool IsStringAllEnglishLetters(string i_SuspectedString, out int o_NumberOfUppercaseLetters, out bool o_IsAscendingAlphabetical)
         {
             o_NumberOfUppercaseLetters = 0;
             o_IsAscendingAlphabetical = false;
             bool doesStringContainsDigits = i_SuspectedString.Any(char.IsDigit);
             bool validAllLettersString = !doesStringContainsDigits;
-
             if (validAllLettersString)
             {
                 o_NumberOfUppercaseLetters = countUppercasedLetters(i_SuspectedString);
                 o_IsAscendingAlphabetical = isStringSortedAlphabetically(i_SuspectedString);
             }
-
             return validAllLettersString;
         }
-
         private static int countUppercasedLetters(string i_SuspectedString)
         {
             int numberOfUppercaseLetters = 0;
-            i_SuspectedString = new string(i_SuspectedString.Distinct().ToArray());
-            
+          //  i_SuspectedString = new string(i_SuspectedString.Distinct().ToArray()); CAUSE GUYRO IS WRONG 
             for (int i = 0; i < i_SuspectedString.Length; i++)
             {
                 if (char.IsUpper(i_SuspectedString[i]))
@@ -87,15 +77,12 @@ namespace Ex01_04
                     ++numberOfUppercaseLetters;
                 }
             }
-
             return numberOfUppercaseLetters;
         }
-
         private static bool isStringSortedAlphabetically(string i_SuspectedString)
         {
             bool isStringAscendingAlphabetical = true;
             i_SuspectedString = i_SuspectedString.ToUpper();
-
             for (int i = 1; i < i_SuspectedString.Length; i++)
             {
                 if (i_SuspectedString[i - 1] > i_SuspectedString[i])
@@ -104,7 +91,6 @@ namespace Ex01_04
                     break;
                 }
             }
-
             return isStringAscendingAlphabetical;
         }
     }
