@@ -38,6 +38,7 @@ Please enter a whole number with 8 digits: ");
             char mostCommonDigitInNumber = i_number.GetMostFrequentDigit();
             int frequencyOfMostCommonDigit = i_number.GetFrequencyOfMostFrequentDigit();
 
+            Console.WriteLine();
             showNumberOfDigitsSmallerThenFirstDigit(firstDigit, numOfDigitSmallerThanFirstDigit, digits);   
             showHowManyDigitsDivisibleBy3(numOfDigitsDivisibleBy3, digitsDivisibleBy3);     
             showDifferenceBetweenLargestDigitToSmallestDigit(differenceBetweenLargestDigitToSmallestDigit);
@@ -45,10 +46,14 @@ Please enter a whole number with 8 digits: ");
         }
         private static void showNumberOfDigitsSmallerThenFirstDigit(int i_firstDigit, int i_numOfDigitSmallerThanFirstDigit, string i_digits)
         {
-            Console.WriteLine(string.Format(
+            Console.Write(string.Format(
 @"1.The first (most left) digit is {0}. There are {1} digits in the provided number 
-which are smaller then {0}, which are {2}", i_firstDigit, i_numOfDigitSmallerThanFirstDigit, i_digits));
-            Console.WriteLine();    
+which are smaller then {0}", i_firstDigit, i_numOfDigitSmallerThanFirstDigit));
+            if (i_digits.Length > 0)
+            {
+                Console.WriteLine(string.Format(", which are {0}", i_digits));
+            }
+            Console.WriteLine();
         }
         private static void showHowManyDigitsDivisibleBy3(int i_numOfDigitsDivisibleBy3, string i_digitsDivisibleBy3)
         { 
@@ -65,7 +70,7 @@ which are smaller then {0}, which are {2}", i_firstDigit, i_numOfDigitSmallerTha
         private static void showMostCommonDigitAndNumberOfFrequency(char i_mostCommonDigit, int i_frequency)
         {
             Console.WriteLine(string.Format(
-@"4.The most common digit in the provided number is {0} , which appeared {1} times.", i_mostCommonDigit, i_frequency));
+@"4.The most common digit in the provided number is {0}, which appeared {1} times.", i_mostCommonDigit, i_frequency));
             Console.WriteLine();
         }
     }
