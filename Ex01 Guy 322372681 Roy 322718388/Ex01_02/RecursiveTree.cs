@@ -4,11 +4,11 @@ namespace Ex01_02
 {
     public class RecursiveTree
     {
-        public static void PrintTree(int i_numOfRows)
+        public static void PrintTree(int i_NumOfRows)
         {
-            printTreeRecursive(ref i_numOfRows, 0, 'A', 1, i_numOfRows);
+            printTreeRecursive(ref i_NumOfRows, 0, 'A', 1, i_NumOfRows);
         }
-        private static void printTreeRecursive(ref int i_numberOfLines, int i_currentLineNumber, char i_lastPrintedChar, int i_lastPrintedNumber, int i_middleTreePosition)
+        private static void printTreeRecursive(ref int i_NumberOfLines, int i_CurrentLineNumber, char i_lastPrintedChar, int i_lastPrintedNumber, int i_MiddleTreePosition)
         {
             if (i_lastPrintedChar == 'Z')
             {
@@ -18,53 +18,53 @@ namespace Ex01_02
             {
                 i_lastPrintedNumber = 1;
             }
-            if (i_currentLineNumber + 1 == i_numberOfLines - 1)
+            if (i_CurrentLineNumber + 1 == i_NumberOfLines - 1)
             {
-                printTrunkOfTree(i_middleTreePosition, i_lastPrintedNumber, i_lastPrintedChar);
+                printTrunkOfTree(i_MiddleTreePosition, i_lastPrintedNumber, i_lastPrintedChar);
             }
             else
             {
-                printRowInTree(i_lastPrintedNumber, i_lastPrintedChar, i_numberOfLines, i_currentLineNumber);
-                printTreeRecursive(ref i_numberOfLines, ++i_currentLineNumber, ++i_lastPrintedChar, i_lastPrintedNumber, i_middleTreePosition);
+                printRowInTree(i_lastPrintedNumber, i_lastPrintedChar, i_NumberOfLines, i_CurrentLineNumber);
+                printTreeRecursive(ref i_NumberOfLines, ++i_CurrentLineNumber, ++i_lastPrintedChar, i_lastPrintedNumber, i_MiddleTreePosition);
             }
         }
-        private static void printRowInTree(int i_lastPrintedNumber, char i_lastPrintedChar, int i_numberOfLines, int i_currentLineNumber)
+        private static void printRowInTree(int i_lastPrintedNumber, char i_lastPrintedChar, int i_NumberOfLines, int i_CurrentLineNumber)
         {
             Console.Write("{0}", i_lastPrintedChar);
-            printSpaces(i_numberOfLines - i_currentLineNumber - 1);
-            printNumbersInRow((i_currentLineNumber * 2) + 1, ref i_lastPrintedNumber);
+            printSpaces(i_NumberOfLines - i_CurrentLineNumber - 1);
+            printNumbersInRow((i_CurrentLineNumber * 2) + 1, ref i_lastPrintedNumber);
             Console.WriteLine();
         }
-        private static void printTrunkOfTree(int i_middleTreePosition, int i_lastPrintedNumber, char i_lastPrintedChar)
+        private static void printTrunkOfTree(int i_MiddleTreePosition, int i_lastPrintedNumber, char i_lastPrintedChar)
         {
-            i_middleTreePosition -= 2;
+            i_MiddleTreePosition -= 2;
             Console.Write("{0} ", i_lastPrintedChar);
-            printSpaces(i_middleTreePosition);
+            printSpaces(i_MiddleTreePosition);
             Console.WriteLine("|{0}|", i_lastPrintedNumber);
             Console.WriteLine();
             Console.Write("{0} ", ++i_lastPrintedChar);
-            printSpaces(i_middleTreePosition);
+            printSpaces(i_MiddleTreePosition);
             Console.WriteLine("|{0}|", i_lastPrintedNumber);
         }
-        private static void printSpaces(int i_count)
+        private static void printSpaces(int i_Count)
         {
-            if (i_count <= 0)
+            if (i_Count <= 0)
             {
                 return;
             }
             Console.Write("  ");
-            printSpaces(i_count - 1);
+            printSpaces(i_Count - 1);
         }
 
-        private static void printNumbersInRow(int i_amountToPrintInRow, ref int i_numberToStartFrom)
+        private static void printNumbersInRow(int i_AmountToPrintInRow, ref int i_NumberToStartFrom)
         {
-            for (int i = 0; i < i_amountToPrintInRow; i++)
+            for (int i = 0; i < i_AmountToPrintInRow; i++)
             {
-                Console.Write("{0} ", i_numberToStartFrom);
-                ++i_numberToStartFrom;
-                if (i_numberToStartFrom == 10)
+                Console.Write("{0} ", i_NumberToStartFrom);
+                ++i_NumberToStartFrom;
+                if (i_NumberToStartFrom == 10)
                 {
-                    i_numberToStartFrom = 1;
+                    i_NumberToStartFrom = 1;
                 }
             }
             Console.WriteLine();
