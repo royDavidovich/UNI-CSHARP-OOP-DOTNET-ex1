@@ -186,7 +186,7 @@ namespace Ex01_01
                 numberMaxSequenceOfOnes = Math.Max(numberMaxSequenceOfOnes, currentSequenceOfOnes);
                 currentSequenceOfOnes = 0;                
             }
-
+                
                 updateNumberWithLongestSequenceOfOnes(numberMaxSequenceOfOnes);
         }
         private void updateNumberWithLongestSequenceOfOnes(int i_NumberMaxSequenceOfOnes)

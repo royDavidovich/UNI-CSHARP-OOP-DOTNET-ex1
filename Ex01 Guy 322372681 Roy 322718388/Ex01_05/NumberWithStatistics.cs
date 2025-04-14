@@ -16,9 +16,9 @@ namespace Ex01_05
         int m_FrequencyOfMostCommonDigit = 0;
         
 
-        public NumberWithStatistics(string i_number)
+        public NumberWithStatistics(string i_Number)
         {
-            m_NumberAsString = i_number;
+            m_NumberAsString = i_Number;
         }
         public string GetNumberAsString()
         {

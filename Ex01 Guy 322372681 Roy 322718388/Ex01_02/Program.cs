@@ -5,6 +5,7 @@
         public static void Main()
         {
             int fixedNumberForEx2 = 7;
+
             RecursiveTree.PrintTree(fixedNumberForEx2);
         }
     }
