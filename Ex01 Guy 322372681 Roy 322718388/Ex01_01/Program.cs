@@ -9,6 +9,7 @@ namespace Ex01_01
         public static void Main()
         {
             string[] numbersFromUser = ConsoleTalker.ReceiveBinaryNumbersFromUser(k_NumbersToRead);
+
             BinaryNumber[] arrayOfBinaryNumbers = new BinaryNumber[k_NumbersToRead];
             for(int i = 0; i < k_NumbersToRead; ++i)
             {

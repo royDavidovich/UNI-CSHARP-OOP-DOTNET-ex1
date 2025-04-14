@@ -10,7 +10,9 @@ namespace Ex01_05
            string initMsg = string.Format(
 @"Hello, Welcome to our final exercise.
 Please enter a whole number with 8 digits: ");
+
             Console.WriteLine(initMsg);
+
             return getNumberFromUser();
         }
         private static string getNumberFromUser()
@@ -18,6 +20,7 @@ Please enter a whole number with 8 digits: ");
             int validNumberLength = 8;
             string input = Console.ReadLine();
             bool success = int.TryParse(input, out int numberFromUser) && input.Length == validNumberLength;
+
             while (!success)
             {
                 string initMsg = string.Format(@"Please enter a valid number with 8 digits only.");
@@ -25,6 +28,7 @@ Please enter a whole number with 8 digits: ");
                 input = Console.ReadLine();
                 success = int.TryParse(input, out numberFromUser) && input.Length == validNumberLength;
             }
+
             return input;
         }
         public static void ShowStatistics(NumberWithStatistics i_Number)
@@ -53,6 +57,7 @@ which are smaller then {0}", i_FirstDigit, i_NumOfDigitSmallerThanFirstDigit));
             {
                 Console.WriteLine(string.Format(", which are {0}", i_Digits));
             }
+
             Console.WriteLine();
         }
         private static void showHowManyDigitsDivisibleBy3(int i_NumOfDigitsDivisibleBy3, string i_DigitsDivisibleBy3)
