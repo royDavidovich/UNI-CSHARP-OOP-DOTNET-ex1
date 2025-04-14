@@ -15,7 +15,6 @@ namespace Ex01_05
         char m_MostFrequentDigit = '0';
         int m_FrequencyOfMostCommonDigit = 0;
         
-
         public NumberWithStatistics(string i_Number)
         {
             m_NumberAsString = i_Number;
@@ -63,6 +62,7 @@ namespace Ex01_05
         private void howManyNumbersAreSmallerThanFirstDigit()
         {
             char firstDigit = m_NumberAsString[0];
+
             for (int i = 1; i < m_NumberAsString.Length; ++i)
             {
                 if (char.GetNumericValue(m_NumberAsString[i]) < char.GetNumericValue(firstDigit))
@@ -77,20 +77,24 @@ namespace Ex01_05
         {
             int maxDigit = -1; //init max as a number lesser then the possible digit
             int minDigit = 10; //init min as a number larger then digit possible
+
             for(int i = 0; i < m_NumberAsString.Length; ++i)
             {
                 maxDigit = (int)Math.Max((double)char.GetNumericValue(m_NumberAsString[i]), (double)maxDigit);
                 minDigit = (int)Math.Min((double)char.GetNumericValue(m_NumberAsString[i]), (double)minDigit);
             }
+
             m_DifferenceBetweenLargestAndSmallestDigits = maxDigit - minDigit;
         }
         private void mostCommonDigitAndNumberOfAppereances()
         {
             string uniqueDigits = "0123456789";
             string numberCopy = m_NumberAsString;
+
             foreach (char d in uniqueDigits)
             {
-                //count the difference from the length of the array, and the length of the array without the current digit
+                // Count how many times the current digit appears by comparing the original length 
+                // with the length after removing all instances of that digit
                 int count = numberCopy.Length - numberCopy.Replace(d.ToString(), "").Length;
                 if (count > m_FrequencyOfMostCommonDigit)
                 {

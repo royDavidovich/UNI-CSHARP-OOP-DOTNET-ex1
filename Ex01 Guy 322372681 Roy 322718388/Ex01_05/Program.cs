@@ -7,6 +7,7 @@ namespace Ex01_05
         {
             string validNumberFromUser = ConsoleHandler.RecieveUserInput();
             NumberWithStatistics number = new NumberWithStatistics(validNumberFromUser);
+
             number.CalculateStatisticsOnNumber();
             ConsoleHandler.ShowStatistics(number);
         }
