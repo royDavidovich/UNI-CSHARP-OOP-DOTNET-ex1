@@ -15,17 +15,21 @@ Please click ""enter"" after every number given."
             Console.WriteLine(msg);
             string[] BinaryNumbers = new string[i_NumOfNumbersToRead]; 
             int numsRead = 0;
+
             while(numsRead < i_NumOfNumbersToRead)
             {
                 string currentStringNum = Console.ReadLine();
                 bool isNumberGood = isValidBinaryNumber(currentStringNum);
+
                 if(isNumberGood == false)
                 {
                     Console.WriteLine("You provided a wrong input. Please provide a 7 digits Binary number.");
                     continue;
                 }
+
                 BinaryNumbers[numsRead++] = currentStringNum;
             }
+
             return BinaryNumbers;
         }
         private static bool isValidBinaryNumber(string i_NumProvidedByUser)
@@ -49,6 +53,7 @@ Please click ""enter"" after every number given."
                     }
                 }
             }
+
             return result;
         }
 
@@ -66,25 +71,28 @@ Please click ""enter"" after every number given."
         {
             Console.WriteLine("Numbers in descending order:");
             StringBuilder decimalValues = new StringBuilder();
+
             for (int i = 0; i < i_Array.Length; i++)
             {
                 decimalValues.Append(i_Array[i].GetDecimalNumber());
-
                 if (i < i_Array.Length - 1)
                 {
                     decimalValues.Append(", ");
                 }
             }
+
             Console.WriteLine(decimalValues.ToString());
         }
         private static void showAverageDecimalValue()
         {
             float averageValue = BinaryNumber.GetAverageDecimalValue();
+
             Console.WriteLine(string.Format("Average value of decimal numbers is {0}", averageValue));
         }
         private static void showLongestSequenceOfOnes(BinaryNumber[] i_Array)
         {
             int longestSequence = BinaryNumber.GetLongestOnesSequence();
+
             Console.WriteLine(string.Format(
                 "Longest sequence of ones is {0}, in number {1}",
                 longestSequence, BinaryNumber.GetNumberWithLongestOneSequence()));
@@ -95,7 +103,7 @@ Please click ""enter"" after every number given."
             foreach (BinaryNumber number in i_Array)
             {
                 Console.WriteLine(string.Format(
-                    "{0} (for number {1})",
+                "{0} (for number {1})",
                     number.GetShiftsBetweenOnesAndZeros(),
                     number.GetMyNumberInString()));
             }
@@ -105,6 +113,7 @@ Please click ""enter"" after every number given."
             int mostOnes = BinaryNumber.GetMostOnesInNumber();
             int decimalNumber = BinaryNumber.GetNumberWithMostOnesAsDecimal();
             string binaryNumber = BinaryNumber.GetNumberWithMostOnesAsBinary();
+
             Console.WriteLine(string.Format(
                 "Most ones are {0} in number {1} (Binary representation: {2})", mostOnes, decimalNumber, binaryNumber));
         }

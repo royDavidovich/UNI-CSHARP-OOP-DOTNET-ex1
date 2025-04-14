@@ -13,7 +13,7 @@ Please enter a 12 charachters long string: ");
             Console.WriteLine(initMsg);
             getValidUserString(out string userString);
 
-            //functions
+       
             bool isMyStringPolindrome = StringCheckingFunctions.CheckForPalindrome(userString);
             Console.WriteLine(string.Format("Is palindrome: {0}", isMyStringPolindrome ? "Yes":"No"));
 

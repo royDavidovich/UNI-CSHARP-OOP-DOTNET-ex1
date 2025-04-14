@@ -27,8 +27,10 @@ namespace Ex01_01
         public static BinaryNumber Parse(string i_Number, int index)
         {
             BinaryNumber result = new BinaryNumber();
+
             result.m_Length = i_Number.Length;
             result.m_MyNumberInString = i_Number;
+
             return result;
         } 
         public string GetMyNumberInString()
@@ -92,6 +94,7 @@ namespace Ex01_01
             {
                 s_AvarageValueOfNumbersInDecimal += currentBool.M_decimalValue;
             }
+
             s_AvarageValueOfNumbersInDecimal /= 4;
         }
         public static void SortArrayDecendingByDecimalValues(BinaryNumber[] i_ArrayOfBinaryNumbers)
@@ -110,6 +113,7 @@ namespace Ex01_01
         private void calculateDecimalValue()
         {
             int j = 0;
+
             foreach (char c in m_MyNumberInString)
             {
                 int currentDigit = (int)char.GetNumericValue(c);
@@ -126,6 +130,7 @@ namespace Ex01_01
                 {
                     ++m_ShiftsBetweenOnesAndZeros;
                 }
+
                 currentDigit = digit;
             }
         }
@@ -140,6 +145,7 @@ namespace Ex01_01
                     ++numberOfOnesOnCurrentNumber;
                 }
             }
+
             updateNumberWithMostOnes(numberOfOnesOnCurrentNumber);
         }
         private void updateNumberWithMostOnes(int i_NumberOfOnesOnCurrentNumber)
@@ -165,16 +171,22 @@ namespace Ex01_01
                 {
                     continue;
                 }
+
                 while (currentDigit != 0)
                 {
                     currentSequenceOfOnes++;
                     if (++i == 7)
+                    {
                         break;
+                    }
+
                     currentDigit = (int)char.GetNumericValue(m_MyNumberInString[i]);              
                 }
+
                 numberMaxSequenceOfOnes = Math.Max(numberMaxSequenceOfOnes, currentSequenceOfOnes);
                 currentSequenceOfOnes = 0;                
             }
+
                 updateNumberWithLongestSequenceOfOnes(numberMaxSequenceOfOnes);
         }
         private void updateNumberWithLongestSequenceOfOnes(int i_NumberMaxSequenceOfOnes)
