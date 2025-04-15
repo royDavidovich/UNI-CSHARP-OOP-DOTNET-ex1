@@ -29,7 +29,7 @@ namespace Ex01_01
             float averageValue = calculateAverageValue(decimalValues);
             sortArrayDescendingByDecimalValues(ref decimalValues);
 
-            ShowStatistics(
+            showStatistics(
                 decimalValues,
                 averageValue,
                 valueOfLongestOnesSequence,
@@ -215,7 +215,7 @@ Please click ""enter"" after every number given."
             io_A = io_B;
             io_B = temp;
         }
-        private static void ShowStatistics(
+        private static void showStatistics(
       int[]     i_DecimalValues,
       float     i_AverageValue,
       int       i_LongestOnesSequence,
