@@ -6,78 +6,42 @@ namespace Ex01_01
 {
     public class Program
     {
-
         public static void Main()
         {
             int      numbersToRead = 4;
-            string[] numbersFromUser = receiveBinaryNumbersFromUser(numbersToRead);
-            string[] binaryStrings = new string[numbersToRead];
-            int[]    decimalValues = new int[numbersToRead];
-            int[]    shiftCounts = new int[numbersToRead];
-            int[]    onesCounts = new int[numbersToRead];
-            int      valueOflongestOnesSequence = 0;
-            string   numberWithLongestOnesSequence = "";
-            int      mostOnesInNumber = 0;
-            string   numberWithMostOnes = "";
-            int      numberWithMostOnesDecimal = 0;
-            int      totalOnes = 0;
-            int      mostShifts = 0;
-            string   numberWithMostShifts = "";
+            string[] binaryNumbers = new string[numbersToRead];
+            int[]    decimalValues = new int[numbersToRead], shiftsBetweenOnesAndZeros = new int[numbersToRead], numOfOnes = new int[numbersToRead];
+            int      valueOfLongestOnesSequence = 0, mostOnesInNumber = 0, numberWithMostOnesInDecimal = 0, totalOnesInAllNumbers = 0, mostShiftsBetweenOnesAndZeros = 0;
+            string   numberWithLongestOnesSequence = "", numberWithMostOnes = "", numberWithMostShifts = "";
 
+            binaryNumbers = receiveBinaryNumbersFromUser(numbersToRead);
             for (int i = 0; i < numbersToRead; ++i)
             {
-                binaryStrings[i] = numbersFromUser[i];
-
-                decimalValues[i] = calculateDecimalValue(binaryStrings[i]);
-                shiftCounts[i] = calculateShiftsOfOnesAndZeros(binaryStrings[i]);
-                onesCounts[i] = countNumberOfOnes(binaryStrings[i]);
-
-                if (onesCounts[i] >= mostOnesInNumber)
-                {
-                    mostOnesInNumber = onesCounts[i];
-                    numberWithMostOnes = binaryStrings[i];
-                    numberWithMostOnesDecimal = decimalValues[i];
-                }
-
-                totalOnes += onesCounts[i];
-
-                int maxSequence = calculateLongestSequenceOfOnes(binaryStrings[i]);
-                if (maxSequence >= valueOflongestOnesSequence)
-                {
-                    valueOflongestOnesSequence = maxSequence;
-                    numberWithLongestOnesSequence = binaryStrings[i];
-                }
-
-                if (shiftCounts[i] >= mostShifts)
-                {
-                    mostShifts = shiftCounts[i];
-                    numberWithMostShifts = binaryStrings[i];
-                }
+                decimalValues[i] = calculateDecimalValue(binaryNumbers[i]);
+                shiftsBetweenOnesAndZeros[i]   = calculateShiftsOfOnesAndZeros(binaryNumbers[i]);
+                numOfOnes[i]    = countNumberOfOnes(binaryNumbers[i]);
+                updateNumberWithMostOnes(numOfOnes[i], decimalValues[i], binaryNumbers[i], ref mostOnesInNumber, ref numberWithMostOnes, ref numberWithMostOnesInDecimal);
+                updateTotalOnes(numOfOnes[i], ref totalOnesInAllNumbers);
+                int currentNumberMaxSequenceOfOnes = calculateLongestSequenceOfOnes(binaryNumbers[i]);
+                updateNumberWithLongestSequenceOfOnes(currentNumberMaxSequenceOfOnes, binaryNumbers[i], ref valueOfLongestOnesSequence, ref numberWithLongestOnesSequence);   
             }
 
-            float averageValue = 0;
-            for (int i = 0; i < numbersToRead; i++)
-            {
-                averageValue += decimalValues[i];
-            }
-            averageValue /= numbersToRead;
-
-            sortArrayDescendingByDecimalValues(decimalValues);
+            float averageValue = calculateAverageValue(decimalValues);
+            sortArrayDescendingByDecimalValues(ref decimalValues);
 
             ShowStatistics(
                 decimalValues,
                 averageValue,
-                valueOflongestOnesSequence,
+                valueOfLongestOnesSequence,
                 numberWithLongestOnesSequence,
                 mostOnesInNumber,
                 numberWithMostOnes,
-                numberWithMostOnesDecimal,
-                totalOnes,
-                mostShifts,
-                numberWithMostShifts
-            );
+                numberWithMostOnesInDecimal,
+                totalOnesInAllNumbers,
+                shiftsBetweenOnesAndZeros,
+                binaryNumbers,
+                numberWithMostShifts);
         }
-
         public static string[] receiveBinaryNumbersFromUser(int i_NumOfNumbersToRead)
         {
             string msg = string.Format(
@@ -129,110 +93,159 @@ Please click ""enter"" after every number given."
 
             return result;
         }
-
         private static int calculateDecimalValue(string i_BinaryString)
         {
             int value = 0;
             int length = i_BinaryString.Length;
+
             for (int i = 0; i < length; i++)
             {
                 int digit = (int)char.GetNumericValue(i_BinaryString[i]);
                 value += (int)(digit * Math.Pow(2, length - i - 1));
             }
+
             return value;
         }
-
         private static int calculateShiftsOfOnesAndZeros(string i_BinaryString)
         {
-            int shifts = 0;
-            int prev = (int)char.GetNumericValue(i_BinaryString[0]);
+            int numOfshiftsInNumber = 0;
+            int prevDigit = (int)char.GetNumericValue(i_BinaryString[0]);
             for (int i = 1; i < i_BinaryString.Length; i++)
             {
-                int curr = (int)char.GetNumericValue(i_BinaryString[i]);
-                if (curr != prev)
+                int currentDigit = (int)char.GetNumericValue(i_BinaryString[i]);
+                if (currentDigit != prevDigit)
                 {
-                    shifts++;
+                    numOfshiftsInNumber++;
                 }
-                prev = curr;
+                prevDigit = currentDigit;
             }
-            return shifts;
+            return numOfshiftsInNumber;
+        }
+        private static void updateNumberWithMostOnes(
+    int        i_CurrentOnesCount,
+    int        i_CurrentNumberDecimalValue,
+    string     i_CurrentBinaryNumber,
+    ref int    io_MostOnesInNumber,
+    ref string io_NumberWithMostOnes,
+    ref int    io_NumberWithMostOnesDecimal)
+        {
+            if (i_CurrentOnesCount > io_MostOnesInNumber)
+            {
+                io_MostOnesInNumber = i_CurrentOnesCount;
+                io_NumberWithMostOnes = i_CurrentBinaryNumber;
+                io_NumberWithMostOnesDecimal = i_CurrentNumberDecimalValue;
+            }
+        }
+        private static void updateTotalOnes(int i_CurrentOnesCount, ref int io_TotalOnes)
+        {
+            io_TotalOnes += i_CurrentOnesCount;
+        }
+
+        private static void updateNumberWithLongestSequenceOfOnes(
+    int         i_CurrentSequenceOfOnes,
+    string      i_CurrentBinaryNumber,
+    ref int     io_ValueOfLongestOnesSequence,
+    ref string  io_NumberWithLongestOnesSequence)
+        {
+            if (i_CurrentSequenceOfOnes > io_ValueOfLongestOnesSequence)
+            {
+                io_ValueOfLongestOnesSequence = i_CurrentSequenceOfOnes;
+                io_NumberWithLongestOnesSequence = i_CurrentBinaryNumber;
+            }
         }
 
         private static int countNumberOfOnes(string i_BinaryString)
         {
-            int count = 0;
+            int numOfOnes = 0;
             foreach (char c in i_BinaryString)
             {
                 if (c == '1')
                 {
-                    count++;
+                    numOfOnes++;
                 }
             }
-            return count;
+            return numOfOnes;
         }
-
         private static int calculateLongestSequenceOfOnes(string i_BinaryString)
         {
-            int maxSequence = 0;
-            int currentSequence = 0;
+            int maxSequenceOfOnes = 0;
+            int currentSequenceofOnes = 0;
             foreach (char c in i_BinaryString)
             {
                 if (c == '1')
                 {
-                    currentSequence++;
-                    maxSequence = Math.Max(maxSequence, currentSequence);
+                    currentSequenceofOnes++;
+                    maxSequenceOfOnes = Math.Max(maxSequenceOfOnes, currentSequenceofOnes);
                 }
                 else
                 {
-                    currentSequence = 0;
+                    currentSequenceofOnes = 0;
                 }
             }
 
-            return maxSequence;
+            return maxSequenceOfOnes;
         }
-        private static void sortArrayDescendingByDecimalValues(int[] i_DecimalValues)
+        private static float calculateAverageValue(int[] i_DecimalValues)
         {
+            float sum = 0;
             for (int i = 0; i < i_DecimalValues.Length; i++)
             {
-                for (int j = i + 1; j < i_DecimalValues.Length; j++)
+                sum += i_DecimalValues[i];
+            }
+
+            return sum / i_DecimalValues.Length;
+        }
+
+        private static void sortArrayDescendingByDecimalValues(ref int[] io_DecimalValues)
+        {
+            for (int i = 0; i < io_DecimalValues.Length; i++)
+            {
+                for (int j = i + 1; j < io_DecimalValues.Length; j++)
                 {
-                    if (i_DecimalValues[i] < i_DecimalValues[j])
+                    if (io_DecimalValues[i] < io_DecimalValues[j])
                     {
-                        swap(ref i_DecimalValues[i], ref i_DecimalValues[j]);
+                        swap(ref io_DecimalValues[i], ref io_DecimalValues[j]);
                     }
                 }
             }
         }
-        private static void swap(ref int a, ref int b)
+        private static void swap(ref int io_A, ref int io_B)
         {
-            int temp = a;
-            a = b;
-            b = temp;
+            int temp = io_A;
+            io_A = io_B;
+            io_B = temp;
         }
         private static void ShowStatistics(
-      int[] i_DecimalValues,
-      float i_AverageValue,
-      int i_LongestOnesSequence,
-      string i_NumberWithLongestOnesSequence,
-      int i_MostOnesInNumber,
-      string i_NumberWithMostOnes,
-      int i_NumberWithMostOnesDecimal,
-      int i_TotalOnes,
-      int i_MostShifts,
-      string i_NumberWithMostShifts)
+      int[]     i_DecimalValues,
+      float     i_AverageValue,
+      int       i_LongestOnesSequence,
+      string    i_NumberWithLongestOnesSequence,
+      int       i_MostOnesInNumber,
+      string    i_NumberWithMostOnes,
+      int       i_NumberWithMostOnesDecimal,
+      int       i_TotalOnes,
+      int[]     i_ShiftsBetweenOnesAndZeros,
+      string[]  i_BinaryNumbers,
+      string    i_NumberWithMostShifts)
         {
             Console.WriteLine("Sorted decimal values (descending):");
             foreach (int val in i_DecimalValues)
             {
                 Console.WriteLine(val);
             }
+
             Console.WriteLine();
             Console.WriteLine($"Average of decimal values: {i_AverageValue}");
             Console.WriteLine($"Longest sequence of 1's: {i_LongestOnesSequence} (Binary: {i_NumberWithLongestOnesSequence})");
-            Console.WriteLine($"Most shifts between 1's and 0's: {i_MostShifts} (Binary: {i_NumberWithMostShifts})");
-            Console.WriteLine($"Most 1's in a number: {i_MostOnesInNumber} (Binary: {i_NumberWithMostOnes}, Decimal: {i_NumberWithMostOnesDecimal})");
+            Console.WriteLine("\nShifts between 1's and 0's for each number:");
+            for (int i = 0; i < i_BinaryNumbers.Length; i++)
+            {
+                Console.WriteLine($"{i_ShiftsBetweenOnesAndZeros[i]} ({i_BinaryNumbers[i]})");
+            }
+            Console.WriteLine($"\nMost 1's in a number: {i_MostOnesInNumber} (Binary: {i_NumberWithMostOnes}, Decimal: {i_NumberWithMostOnesDecimal})");
             Console.WriteLine($"Total number of 1's in all numbers: {i_TotalOnes}");
         }
+
 
     }
 }
