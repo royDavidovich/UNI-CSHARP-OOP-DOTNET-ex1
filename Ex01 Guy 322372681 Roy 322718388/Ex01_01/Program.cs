@@ -8,27 +8,27 @@ namespace Ex01_01
     {
         public static void Main()
         {
-            int      numbersToRead = 4;
-            string[] binaryNumbers = new string[numbersToRead];
-            int[]    decimalValues = new int[numbersToRead], shiftsBetweenOnesAndZeros = new int[numbersToRead], numOfOnes = new int[numbersToRead];
-            int      valueOfLongestOnesSequence = 0, mostOnesInNumber = 0, numberWithMostOnesInDecimal = 0, totalOnesInAllNumbers = 0, mostShiftsBetweenOnesAndZeros = 0;
+            const int      k_numOfNumbers = 4;
+            string[] binaryNumbers = new string[k_numOfNumbers];
+            int[]    decimalValues = new int[k_numOfNumbers], shiftsBetweenOnesAndZeros = new int[k_numOfNumbers];
+            int      decimalValueOfNumberWithMostOnes = 0, totalOnesInAllNumbers = 0, mostOnesInNumber = 0, valueOfLongestOnesSequence = 0; 
             string   numberWithLongestOnesSequence = "", numberWithMostOnes = "", numberWithMostShifts = "";
+            float    averageValue = 0f;
 
-            binaryNumbers = receiveBinaryNumbersFromUser(numbersToRead);
-            for (int i = 0; i < numbersToRead; ++i)
+            binaryNumbers = receiveBinaryNumbersFromUser(k_numOfNumbers);
+            for (int i = 0; i < k_numOfNumbers; ++i)
             {
                 decimalValues[i] = calculateDecimalValue(binaryNumbers[i]);
-                shiftsBetweenOnesAndZeros[i]   = calculateShiftsOfOnesAndZeros(binaryNumbers[i]);
-                numOfOnes[i]    = countNumberOfOnes(binaryNumbers[i]);
-                updateNumberWithMostOnes(numOfOnes[i], decimalValues[i], binaryNumbers[i], ref mostOnesInNumber, ref numberWithMostOnes, ref numberWithMostOnesInDecimal);
-                updateTotalOnes(numOfOnes[i], ref totalOnesInAllNumbers);
+                shiftsBetweenOnesAndZeros[i] = calculateShiftsOfOnesAndZeros(binaryNumbers[i]);
+                int currentNumberNumOfOnes = countNumberOfOnes(binaryNumbers[i]);
                 int currentNumberMaxSequenceOfOnes = calculateLongestSequenceOfOnes(binaryNumbers[i]);
+                updateNumberWithMostOnes(currentNumberNumOfOnes, decimalValues[i], binaryNumbers[i], ref mostOnesInNumber, ref numberWithMostOnes, ref decimalValueOfNumberWithMostOnes);
+                updateTotalOnes(currentNumberNumOfOnes, ref totalOnesInAllNumbers);
                 updateNumberWithLongestSequenceOfOnes(currentNumberMaxSequenceOfOnes, binaryNumbers[i], ref valueOfLongestOnesSequence, ref numberWithLongestOnesSequence);   
             }
-
-            float averageValue = calculateAverageValue(decimalValues);
+        
+            averageValue = calculateAverageValue(decimalValues);
             sortArrayDescendingByDecimalValues(ref decimalValues);
-
             showStatistics(
                 decimalValues,
                 averageValue,
@@ -36,7 +36,7 @@ namespace Ex01_01
                 numberWithLongestOnesSequence,
                 mostOnesInNumber,
                 numberWithMostOnes,
-                numberWithMostOnesInDecimal,
+                decimalValueOfNumberWithMostOnes,
                 totalOnesInAllNumbers,
                 shiftsBetweenOnesAndZeros,
                 binaryNumbers,
@@ -56,7 +56,7 @@ Please click ""enter"" after every number given."
             while (numsRead < i_NumOfNumbersToRead)
             {
                 string currentStringNum = Console.ReadLine();
-                bool isNumberGood = isValidBinaryNumber(currentStringNum);
+                bool   isNumberGood = isValidBinaryNumber(currentStringNum);
 
                 if (isNumberGood == false)
                 {
@@ -72,10 +72,10 @@ Please click ""enter"" after every number given."
         private static bool isValidBinaryNumber(string i_NumProvidedByUser)
         {
             const bool v_isValid = true;
-            const int DigitsToRead = 7;
-            bool result = v_isValid;
+            const int k_DigitsToRead = 7;
+            bool      result = v_isValid;
 
-            if (i_NumProvidedByUser.Length != DigitsToRead)
+            if (i_NumProvidedByUser.Length != k_DigitsToRead)
             {
                 result = !v_isValid;
             }
@@ -122,16 +122,16 @@ Please click ""enter"" after every number given."
             return numOfshiftsInNumber;
         }
         private static void updateNumberWithMostOnes(
-    int        i_CurrentOnesCount,
+    int        i_CurrentNumberNumOfOnes,
     int        i_CurrentNumberDecimalValue,
     string     i_CurrentBinaryNumber,
     ref int    io_MostOnesInNumber,
     ref string io_NumberWithMostOnes,
     ref int    io_NumberWithMostOnesDecimal)
         {
-            if (i_CurrentOnesCount > io_MostOnesInNumber)
+            if (i_CurrentNumberNumOfOnes > io_MostOnesInNumber)
             {
-                io_MostOnesInNumber = i_CurrentOnesCount;
+                io_MostOnesInNumber = i_CurrentNumberNumOfOnes;
                 io_NumberWithMostOnes = i_CurrentBinaryNumber;
                 io_NumberWithMostOnesDecimal = i_CurrentNumberDecimalValue;
             }
