@@ -1,6 +1,4 @@
 ﻿using System;
-using Ex01_02;
-
 namespace Ex01_03
 {
     public class Program
@@ -18,7 +16,7 @@ namespace Ex01_03
             }
 
             Console.WriteLine();
-            RecursiveTree.PrintTree(o_usersNumOfRows);
+            Ex01_02.Program.PrintTree(o_usersNumOfRows);
         }
     }
 }
