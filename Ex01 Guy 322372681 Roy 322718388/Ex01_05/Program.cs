@@ -43,9 +43,25 @@ namespace Ex01_05
 
         private static string RecieveUserInput()
         {
-            Console.Write("Enter a number: ");
-            return Console.ReadLine();
+            string inputFromUser;
+            bool isValid;
+
+            do
+            {
+                Console.Write("Enter a number with exactly 8 digits: ");
+                inputFromUser = Console.ReadLine();
+                isValid = (inputFromUser.Length == 8 && inputFromUser.All(char.IsDigit));
+
+                if (!isValid)
+                {
+                    Console.WriteLine("Invalid input. Please enter exactly 8 digits (0-9).");
+                }
+
+            } while (!isValid);
+
+            return inputFromUser;
         }
+
 
         private static void CalculateStatisticsOnNumber(
             string i_NumberAsString,
