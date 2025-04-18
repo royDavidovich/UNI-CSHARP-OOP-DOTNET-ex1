@@ -98,10 +98,10 @@ Please enter a 12 charachters long string: ");
         }
         private static bool isStringAllEnglishLetters(string i_SuspectedString, out int o_NumberOfUppercaseLetters, out bool o_IsAscendingAlphabetical)
         {
-            o_NumberOfUppercaseLetters = 0;
+            o_NumberOfUppercaseLetters = 0;      
             o_IsAscendingAlphabetical = false;
             bool doesStringContainsDigits = i_SuspectedString.Any(char.IsDigit);
-            bool validAllLettersString = !doesStringContainsDigits;
+            bool validAllLettersString = !doesStringContainsDigits && i_SuspectedString.All(char.IsLetter);
 
             if (validAllLettersString)
             {
