@@ -39,8 +39,6 @@ namespace Ex01_05
                 frequencyOfMostFrequentDigit
             );
         }
-
-
         private static string RecieveUserInput()
         {
             string inputFromUser;
@@ -61,24 +59,21 @@ namespace Ex01_05
 
             return inputFromUser;
         }
-
-
         private static void CalculateStatisticsOnNumber(
-            string i_NumberAsString,
-            out int o_NumOfDigitsSmallerThanFirstDigit,
+            string            i_NumberAsString,
+            out int           o_NumOfDigitsSmallerThanFirstDigit,
             out StringBuilder o_DigitsSmallerThanFirstDigit,
-            out int o_NumOfDigitsDivisibleBy3,
+            out int           o_NumOfDigitsDivisibleBy3,
             out StringBuilder o_DigitsDivisibleBy3,
-            out int o_DifferenceBetweenLargestAndSmallestDigits,
-            out char o_MostFrequentDigit,
-            out int o_FrequencyOfMostFrequentDigit)
+            out int           o_DifferenceBetweenLargestAndSmallestDigits,
+            out char          o_MostFrequentDigit,
+            out int           o_FrequencyOfMostFrequentDigit)
         {
             HowManyNumbersAreSmallerThanFirstDigit(i_NumberAsString, out o_NumOfDigitsSmallerThanFirstDigit, out o_DigitsSmallerThanFirstDigit);
             HowManyNumbersDivisibleBy3(i_NumberAsString, out o_NumOfDigitsDivisibleBy3, out o_DigitsDivisibleBy3);
             DifferenceFromLargestDigitToSmallestDigit(i_NumberAsString, out o_DifferenceBetweenLargestAndSmallestDigits);
             MostCommonDigitAndNumberOfAppearances(i_NumberAsString, out o_MostFrequentDigit, out o_FrequencyOfMostFrequentDigit);
         }
-
         private static void HowManyNumbersAreSmallerThanFirstDigit(string i_Number, out int o_NumOfDigitsSmallerThanFirstDigit, out StringBuilder o_Digits)
         {
             o_NumOfDigitsSmallerThanFirstDigit = 0;
@@ -89,33 +84,30 @@ namespace Ex01_05
             {
                 if (char.GetNumericValue(i_Number[i]) < char.GetNumericValue(firstDigit))
                 {
-                    o_NumOfDigitsSmallerThanFirstDigit++;
+                    ++o_NumOfDigitsSmallerThanFirstDigit;
                     o_Digits.Append(i_Number[i]);
                     o_Digits.Append(' ');
                 }
             }
         }
-
         private static void HowManyNumbersDivisibleBy3(string i_Number, out int o_NumOfDigitsDivisibleBy3, out StringBuilder o_DigitsDevisibleBy3)
         {
             o_NumOfDigitsDivisibleBy3 = 0;
             o_DigitsDevisibleBy3 = new StringBuilder();
-
             for (int i = 0; i < i_Number.Length; ++i)
             {
                 if (char.GetNumericValue(i_Number[i]) % 3 == 0)
                 {
                     o_DigitsDevisibleBy3.Append(i_Number[i]);
                     o_DigitsDevisibleBy3.Append(' ');
-                    o_NumOfDigitsDivisibleBy3++;
+                    ++o_NumOfDigitsDivisibleBy3;
                 }
             }
         }
-
         private static void DifferenceFromLargestDigitToSmallestDigit(string i_Number, out int o_Difference)
         {
-            int maxDigit = -1;
-            int minDigit = 10;
+            int maxDigit = int.MinValue;
+            int minDigit = int.MaxValue;
 
             for (int i = 0; i < i_Number.Length; ++i)
             {
@@ -126,13 +118,13 @@ namespace Ex01_05
 
             o_Difference = maxDigit - minDigit;
         }
-
         private static void MostCommonDigitAndNumberOfAppearances(string i_Number, out char o_MostFrequentDigit, out int o_MaxFrequency)
         {
             string uniqueDigits = "0123456789";
             o_MaxFrequency = 0;
             o_MostFrequentDigit = '0';
 
+            // Checks each digit 0–9 by removing it from the string and comparing length differences to count occurrences.
             foreach (char digit in uniqueDigits)
             {
                 int currentDigitFrequency = i_Number.Length - i_Number.Replace(digit.ToString(), "").Length;
@@ -143,16 +135,15 @@ namespace Ex01_05
                 }
             }
         }
-
         private static void ShowStatistics(
-            string i_Number,
-            int i_NumOfDigitsSmallerThanFirstDigit,
-            StringBuilder i_DigitsSmallerThanFirstDigit,
-            int i_NumOfDigitsDivisibleBy3,
-            StringBuilder i_DigitsDivisibleBy3,
-            int i_DifferenceBetweenLargestAndSmallestDigits,
-            char i_MostFrequentDigit,
-            int i_FrequencyOfMostFrequentDigit)
+            string          i_Number,
+            int             i_NumOfDigitsSmallerThanFirstDigit,
+            StringBuilder   i_DigitsSmallerThanFirstDigit,
+            int             i_NumOfDigitsDivisibleBy3,
+            StringBuilder   i_DigitsDivisibleBy3,
+            int             i_DifferenceBetweenLargestAndSmallestDigits,
+            char            i_MostFrequentDigit,
+            int             i_FrequencyOfMostFrequentDigit)
         {
             Console.WriteLine($"Number: {i_Number}");
             Console.WriteLine($"Digits smaller than first digit ({i_Number[0]}): {i_DigitsSmallerThanFirstDigit}({i_NumOfDigitsSmallerThanFirstDigit})");
