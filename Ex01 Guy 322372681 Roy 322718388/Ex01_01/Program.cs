@@ -96,7 +96,7 @@ Please click ""enter"" after every number given.");
             int decimalValue = 0;
             int binaryStringLength = i_BinaryString.Length;
 
-            for (int i = 0; i < binaryStringLength; i++)
+            for (int i = 0; i < binaryStringLength; ++i)
             {
                 int digit = (int)char.GetNumericValue(i_BinaryString[i]);
                 decimalValue += (int)(digit * Math.Pow(2, binaryStringLength - i - 1));
@@ -108,7 +108,7 @@ Please click ""enter"" after every number given.");
         {
             int numOfshiftsInNumber = 0;
             int prevDigit = (int)char.GetNumericValue(i_BinaryString[0]);
-            for (int i = 1; i < i_BinaryString.Length; i++)
+            for (int i = 1; i < i_BinaryString.Length; ++i)
             {
                 int currentDigit = (int)char.GetNumericValue(i_BinaryString[i]);
                 if (currentDigit != prevDigit)
@@ -187,7 +187,7 @@ Please click ""enter"" after every number given.");
         private static float calculateAverageValue(int[] i_DecimalValues)
         {
             float sumOfAllDecimalValues = 0;
-            for (int i = 0; i < i_DecimalValues.Length; i++)
+            for (int i = 0; i < i_DecimalValues.Length; ++i)
             {
                 sumOfAllDecimalValues += i_DecimalValues[i];
             }
@@ -197,9 +197,9 @@ Please click ""enter"" after every number given.");
 
         private static void sortArrayDescendingByDecimalValues(ref int[] io_DecimalValues)
         {
-            for (int i = 0; i < io_DecimalValues.Length; i++)
+            for (int i = 0; i < io_DecimalValues.Length; ++i)
             {
-                for (int j = i + 1; j < io_DecimalValues.Length; j++)
+                for (int j = i + 1; j < io_DecimalValues.Length; ++j)
                 {
                     if (io_DecimalValues[i] < io_DecimalValues[j])
                     {
@@ -237,7 +237,7 @@ Please click ""enter"" after every number given.");
             Console.WriteLine($"Average of decimal values: {i_AverageValue}");
             Console.WriteLine($"Longest sequence of 1's: {i_LongestOnesSequence} (Binary: {i_NumberWithLongestOnesSequence})");
             Console.WriteLine("\nShifts between 1's and 0's for each number:");
-            for (int i = 0; i < i_BinaryNumbers.Length; i++)
+            for (int i = 0; i < i_BinaryNumbers.Length; ++i)
             {
                 Console.WriteLine($"{i_ShiftsBetweenOnesAndZeros[i]} ({i_BinaryNumbers[i]})");
             }

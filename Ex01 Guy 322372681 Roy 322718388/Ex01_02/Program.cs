@@ -64,7 +64,7 @@ namespace Ex01_02
 
         private static void printNumbersInRow(int i_amountToPrintInRow, ref int i_numberToStartFrom)
         {
-            for (int i = 0; i < i_amountToPrintInRow; i++)
+            for (int i = 0; i < i_amountToPrintInRow; ++i)
             {
                 Console.Write("{0} ", i_numberToStartFrom);
                 ++i_numberToStartFrom;

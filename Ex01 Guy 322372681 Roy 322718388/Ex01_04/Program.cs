@@ -8,9 +8,9 @@ namespace Ex01_04
         public static void Main()
         {
             string userInput = recieveUsersInput();
-            bool isMyStringPolindrome = checkForPalindrome(userInput);
+            bool   isMyStringPalindrome = checkForPalindrome(userInput);
 
-            Console.WriteLine(string.Format("Is palindrome: {0}", isMyStringPolindrome ? "Yes" : "No"));
+            Console.WriteLine(string.Format("Is palindrome: {0}", isMyStringPalindrome ? "Yes" : "No"));
             if (isStringRepresentsANumberAndNumberDivisableBy3(userInput, out bool o_IsDivisiableBy3))
             {
                 Console.WriteLine(string.Format("Is divisiable by 3 w/o remainder: {0}", o_IsDivisiableBy3 ? "Yes" : "No"));
@@ -67,7 +67,6 @@ Please enter a 12 charachters long string: ");
                 char FirstLetterInSuspectedPalindrome = i_SuspectedPalindrome[0];
                 char LastLetterInSuspectedPalindrome = i_SuspectedPalindrome[inputStringLength - 1];
                 string newSuspectedPalindrome = i_SuspectedPalindrome.Substring(1, inputStringLength - 2);
-
                 if (FirstLetterInSuspectedPalindrome != LastLetterInSuspectedPalindrome)
                 {
                     isPalindrome = false;
@@ -116,7 +115,7 @@ Please enter a 12 charachters long string: ");
         {
             int numberOfUppercaseLetters = 0;
 
-            for (int i = 0; i < i_SuspectedString.Length; i++)
+            for (int i = 0; i < i_SuspectedString.Length; ++i)
             {
                 if (char.IsUpper(i_SuspectedString[i]))
                 {
@@ -131,7 +130,7 @@ Please enter a 12 charachters long string: ");
             bool isStringAscendingAlphabetical = true;
             i_SuspectedString = i_SuspectedString.ToUpper();
 
-            for (int i = 1; i < i_SuspectedString.Length; i++)
+            for (int i = 1; i < i_SuspectedString.Length; ++i)
             {
                 if (i_SuspectedString[i - 1] > i_SuspectedString[i])
                 {
