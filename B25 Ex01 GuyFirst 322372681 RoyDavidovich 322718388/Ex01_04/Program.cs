@@ -67,6 +67,7 @@ Please enter a 12 charachters long string: ");
                 char FirstLetterInSuspectedPalindrome = i_SuspectedPalindrome[0];
                 char LastLetterInSuspectedPalindrome = i_SuspectedPalindrome[inputStringLength - 1];
                 string newSuspectedPalindrome = i_SuspectedPalindrome.Substring(1, inputStringLength - 2);
+				
                 if (FirstLetterInSuspectedPalindrome != LastLetterInSuspectedPalindrome)
                 {
                     isPalindrome = false;
@@ -128,8 +129,8 @@ Please enter a 12 charachters long string: ");
         private static bool isStringSortedAlphabetically(string i_SuspectedString)
         {
             bool isStringAscendingAlphabetical = true;
+			
             i_SuspectedString = i_SuspectedString.ToUpper();
-
             for (int i = 1; i < i_SuspectedString.Length; ++i)
             {
                 if (i_SuspectedString[i - 1] > i_SuspectedString[i])

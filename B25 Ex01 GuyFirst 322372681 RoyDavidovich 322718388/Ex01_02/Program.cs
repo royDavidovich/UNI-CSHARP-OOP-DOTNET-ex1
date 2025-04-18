@@ -7,6 +7,7 @@ namespace Ex01_02
         public static void Main()
         {
             int numRows = 7;
+			
             PrintTree(numRows);
         }
         public static void PrintTree(int i_numOfRows)
@@ -58,6 +59,7 @@ namespace Ex01_02
             {
                 return;
             }
+			
             Console.Write("  ");
             printSpaces(i_count - 1);
         }
@@ -73,6 +75,7 @@ namespace Ex01_02
                     i_numberToStartFrom = 1;
                 }
             }
+			
             Console.WriteLine();
         }
     }
