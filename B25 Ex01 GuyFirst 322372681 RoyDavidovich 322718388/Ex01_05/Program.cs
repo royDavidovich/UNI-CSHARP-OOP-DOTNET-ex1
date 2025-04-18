@@ -27,7 +27,6 @@ namespace Ex01_05
                 out mostFrequentDigit,
                 out frequencyOfMostFrequentDigit
             );
-
             ShowStatistics(
                 numberAsString,
                 numOfDigitsSmallerThanFirstDigit,
@@ -49,7 +48,6 @@ namespace Ex01_05
                 Console.Write("Enter a number with exactly 8 digits: ");
                 inputFromUser = Console.ReadLine();
                 isValid = (inputFromUser.Length == 8 && inputFromUser.All(char.IsDigit));
-
                 if (!isValid)
                 {
                     Console.WriteLine("Invalid input. Please enter exactly 8 digits (0-9).");
@@ -112,6 +110,7 @@ namespace Ex01_05
             for (int i = 0; i < i_Number.Length; ++i)
             {
                 int currentDigit = (int)char.GetNumericValue(i_Number[i]);
+				
                 maxDigit = Math.Max(currentDigit, maxDigit);
                 minDigit = Math.Min(currentDigit, minDigit);
             }
@@ -121,6 +120,7 @@ namespace Ex01_05
         private static void MostCommonDigitAndNumberOfAppearances(string i_Number, out char o_MostFrequentDigit, out int o_MaxFrequency)
         {
             string uniqueDigits = "0123456789";
+			
             o_MaxFrequency = 0;
             o_MostFrequentDigit = '0';
 
@@ -128,6 +128,7 @@ namespace Ex01_05
             foreach (char digit in uniqueDigits)
             {
                 int currentDigitFrequency = i_Number.Length - i_Number.Replace(digit.ToString(), "").Length;
+				
                 if (currentDigitFrequency > o_MaxFrequency)
                 {
                     o_MaxFrequency = currentDigitFrequency;

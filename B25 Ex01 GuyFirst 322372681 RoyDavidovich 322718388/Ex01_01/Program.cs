@@ -20,6 +20,7 @@ namespace Ex01_01
             {
                 int currentNumberNumOfOnes = countNumberOfOnes(binaryNumbers[i]);
                 int currentNumberMaxSequenceOfOnes = calculateLongestSequenceOfOnes(binaryNumbers[i]);
+				
                 decimalValues[i] = calculateDecimalValue(binaryNumbers[i]);
                 shiftsBetweenOnesAndZeros[i] = calculateShiftsOfOnesAndZeros(binaryNumbers[i]);
                 updateNumberWithMostOnes(currentNumberNumOfOnes, decimalValues[i], binaryNumbers[i], ref mostOnesInNumber, ref numberWithMostOnes, ref decimalValueOfNumberWithMostOnes);
@@ -56,6 +57,7 @@ Please click ""enter"" after every number given.");
             {
                 string currentStringNum = Console.ReadLine();
                 bool   isNumberGood = isValidBinaryNumber(currentStringNum);
+				
                 if (!isNumberGood)
                 {
                     Console.WriteLine("You provided a wrong input. Please provide a 7 digits Binary number.");
@@ -99,6 +101,7 @@ Please click ""enter"" after every number given.");
             for (int i = 0; i < binaryStringLength; ++i)
             {
                 int digit = (int)char.GetNumericValue(i_BinaryString[i]);
+				
                 decimalValue += (int)(digit * Math.Pow(2, binaryStringLength - i - 1));
             }
 
@@ -108,9 +111,11 @@ Please click ""enter"" after every number given.");
         {
             int numOfshiftsInNumber = 0;
             int prevDigit = (int)char.GetNumericValue(i_BinaryString[0]);
+			
             for (int i = 1; i < i_BinaryString.Length; ++i)
             {
                 int currentDigit = (int)char.GetNumericValue(i_BinaryString[i]);
+				
                 if (currentDigit != prevDigit)
                 {
                     numOfshiftsInNumber++;
@@ -155,6 +160,7 @@ Please click ""enter"" after every number given.");
         private static int countNumberOfOnes(string i_BinaryString)
         {
             int numOfOnesInNumber = 0;
+			
             foreach (char c in i_BinaryString)
             {
                 if (c == '1')
@@ -169,6 +175,7 @@ Please click ""enter"" after every number given.");
         {
             int maxSequenceOfOnes = 0;
             int currentSequenceofOnes = 0;
+			
             foreach (char c in i_BinaryString)
             {
                 if (c == '1')
@@ -187,6 +194,7 @@ Please click ""enter"" after every number given.");
         private static float calculateAverageValue(int[] i_DecimalValues)
         {
             float sumOfAllDecimalValues = 0;
+			
             for (int i = 0; i < i_DecimalValues.Length; ++i)
             {
                 sumOfAllDecimalValues += i_DecimalValues[i];
@@ -211,6 +219,7 @@ Please click ""enter"" after every number given.");
         private static void swap(ref int io_A, ref int io_B)
         {
             int temp = io_A;
+			
             io_A = io_B;
             io_B = temp;
         }
